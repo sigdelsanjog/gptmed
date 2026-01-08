@@ -34,13 +34,13 @@ jobs:
         # The package will still upload successfully to PyPI
         twine check dist/* || true
         
-    - name: Publish to Test PyPI (optional step)
-      if: github.event_name == 'workflow_dispatch'
-      env:
-        TWINE_USERNAME: __token__
-        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-      run: |
-        twine upload --repository testpypi dist/* --skip-existing
+    # - name: Publish to Test PyPI (optional step)
+    #   if: github.event_name == 'workflow_dispatch'
+    #   env:
+    #     TWINE_USERNAME: __token__
+    #     TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+    #   run: |
+    #     twine upload --repository testpypi dist/* --skip-existing
         
     - name: Publish to PyPI
       if: github.event_name == 'release'

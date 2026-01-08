@@ -1,10 +1,11 @@
 name: Publish to PyPI
 
-# Trigger on release creation or manual workflow dispatch
+# Trigger on push to main branch or manual workflow dispatch
 on:
-  release:
-    types: [published]
-  workflow_dispatch:  # Allows manual triggering from GitHub UI
+  push:
+    branches:
+      - main
+  workflow_dispatch:  
 
 jobs:
   deploy:
@@ -43,7 +44,7 @@ jobs:
     #     twine upload --repository testpypi dist/* --skip-existing
         
     - name: Publish to PyPI
-      if: github.event_name == 'release'
+      # Remove the 'if' condition to publish on every main branch push
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}

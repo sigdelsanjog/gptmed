@@ -7,6 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-01-09
+
+### Fixed
+
+- **BREAKING CHANGE**: Proper package namespace structure
+  - All modules now under `llm_med` namespace
+  - Imports changed from `from model.architecture` to `from llm_med.model.architecture`
+  - This fixes the ModuleNotFoundError with v0.1.0
+
+### Changed
+
+- Restructured package with proper namespace: `llm_med/`
+- Updated all internal imports to use `llm_med.` prefix
+- Updated entry points to use proper namespace paths
+
+### Added
+
+- Package-level `__init__.py` with convenience imports
+- `setup.py` for editable install compatibility
+
 ## [0.1.0] - 2026-01-08
 
 ### Added

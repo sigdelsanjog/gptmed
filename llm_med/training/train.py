@@ -46,11 +46,11 @@ import sys
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from model.architecture import GPTTransformer
-from model.configs.model_config import get_small_config, get_tiny_config
-from configs.train_config import get_default_config, get_quick_test_config
-from training.dataset import create_dataloaders
-from training.trainer import Trainer
+from llm_med.model.architecture import GPTTransformer
+from llm_med.model.configs.model_config import get_small_config, get_tiny_config
+from llm_med.configs.train_config import get_default_config, get_quick_test_config
+from llm_med.training.dataset import create_dataloaders
+from llm_med.training.trainer import Trainer
 
 
 def set_seed(seed: int):

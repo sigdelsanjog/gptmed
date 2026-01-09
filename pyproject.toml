@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "llm-med"
-version = "0.1.0"
+version = "0.2.0"
 description = "A lightweight medical question-answering language model"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -59,28 +59,29 @@ Repository = "https://github.com/sigdelsanjog/medllm"
 Issues = "https://github.com/sigdelsanjog/medllm/issues"
 
 [project.scripts]
-medllm-generate = "inference.generator:main"
-medllm-train = "training.train:main"
+medllm-generate = "llm_med.inference.generator:main"
+medllm-train = "llm_med.training.train:main"
 
 [tool.setuptools]
 packages = [
-    "model",
-    "model.architecture",
-    "model.configs",
-    "inference",
-    "training",
-    "utils",
-    "configs",
-    "data",
-    "data.parsers",
-    "tokenizer",
+    "llm_med",
+    "llm_med.model",
+    "llm_med.model.architecture",
+    "llm_med.model.configs",
+    "llm_med.inference",
+    "llm_med.training",
+    "llm_med.utils",
+    "llm_med.configs",
+    "llm_med.data",
+    "llm_med.data.parsers",
+    "llm_med.tokenizer",
 ]
 
 [tool.setuptools.package-data]
 "*" = ["*.json", "*.yaml", "*.txt"]
 # Include pre-trained tokenizer model and vocabulary (~240KB total)
 # These are required for text tokenization without needing to retrain
-tokenizer = ["*.model", "*.vocab"]
+"llm_med.tokenizer" = ["*.model", "*.vocab"]
 
 [tool.black]
 line-length = 100

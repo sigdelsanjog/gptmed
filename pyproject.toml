@@ -3,7 +3,7 @@ requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "llm-med"
+name = "gptgpt"
 version = "0.2.0"
 description = "A lightweight medical question-answering language model"
 readme = "README.md"
@@ -60,21 +60,21 @@ Issues = "https://github.com/sigdelsanjog/medllm/issues"
 
 [project.scripts]
 medllm-generate = "llm_med.inference.generator:main"
-medllm-train = "llm_med.training.train:main"
+medllm-train = "gptgpt.training.train:main"
 
 [tool.setuptools]
 packages = [
-    "llm_med",
-    "llm_med.model",
-    "llm_med.model.architecture",
-    "llm_med.model.configs",
-    "llm_med.inference",
-    "llm_med.training",
-    "llm_med.utils",
-    "llm_med.configs",
-    "llm_med.data",
-    "llm_med.data.parsers",
-    "llm_med.tokenizer",
+    "gptgpt",
+    "gptgpt.model",
+    "gptgpt.model.architecture",
+    "gptgpt.model.configs",
+    "gptgpt.inference",
+    "gptgpt.training",
+    "gptgpt.utils",
+    "gptgpt.configs",
+    "gptgpt.data",
+    "gptgpt.data.parsers",
+    "gptgpt.tokenizer",
 ]
 
 [tool.setuptools.package-data]

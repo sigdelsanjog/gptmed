@@ -1,32 +1,33 @@
-# llm-med 🏥
+# GptGpt 🤖
 
-A lightweight medical question-answering language model trained on the MedQuAD dataset. This package provides a transformer-based GPT architecture optimized for medical domain question answering.
+A lightweight GPT-based language model framework for training custom question-answering models on any domain. This package provides a transformer-based GPT architecture that you can train on your own Q&A datasets - whether it's casual conversations, technical support, education, or any other domain.
 
-[![PyPI version](https://badge.fury.io/py/llm-med.svg)](https://badge.fury.io/py/llm-med)
+[![PyPI version](https://badge.fury.io/py/gptgpt.svg)](https://badge.fury.io/py/gptgpt)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Features
 
-- 🧠 **Custom GPT Architecture**: Lightweight transformer model designed for medical QA
-- 💊 **Medical Domain**: Trained on MedQuAD dataset with medical terminology
-- ⚡ **Fast Inference**: Optimized for quick medical question answering
-- 🔧 **Flexible**: Easy to fine-tune on your own medical datasets
+- 🧠 **Custom GPT Architecture**: Lightweight transformer model for any Q&A domain
+- 🎯 **Domain-Agnostic**: Train on any question-answering dataset (casual chat, tech support, education, etc.)
+- ⚡ **Fast Inference**: Optimized for quick question answering
+- 🔧 **Flexible Training**: Easy to train on your own custom datasets
 - 📦 **Lightweight**: Small model size suitable for edge deployment
+- 🛠️ **Complete Toolkit**: Includes tokenizer training, model training, and inference utilities
 
 ## Installation
 
 ### From PyPI (Recommended)
 
 ```bash
-pip install llm-med
+pip install gptgpt
 ```
 
 ### From Source
 
 ```bash
-git clone https://github.com/yourusername/medllm.git
-cd medllm
+git clone https://github.com/sigdelsanjog/gptgpt.git
+cd gptgpt
 pip install -e .
 ```
 
@@ -34,23 +35,23 @@ pip install -e .
 
 ```bash
 # For development
-pip install llm-med[dev]
+pip install gptgpt[dev]
 
 # For training
-pip install llm-med[training]
+pip install gptgpt[training]
 
 # All dependencies
-pip install llm-med[dev,training]
+pip install gptgpt[dev,training]
 ```
 
 ## Quick Start
 
-### Inference (Generate Medical Answers)
+### Inference (Generate Answers)
 
 ```python
-from inference.generator import MedicalQAGenerator
-from model.architecture import GPTTransformer
-from model.configs.model_config import get_small_config
+from gptgpt.inference.generator import TextGenerator
+from gptgpt.model.architecture import GPTTransformer
+from gptgpt.model.configs.model_config import get_small_config
 
 # Load model
 config = get_small_config()
@@ -60,13 +61,13 @@ model = GPTTransformer(config)
 # model.load_state_dict(torch.load('path/to/checkpoint.pt'))
 
 # Create generator
-generator = MedicalQAGenerator(
+generator = TextGenerator(
     model=model,
     tokenizer_path='path/to/tokenizer.model'
 )
 
 # Generate answer
-question = "What are the symptoms of diabetes?"
+question = "What's your favorite programming language?"
 answer = generator.generate(
     prompt=question,
     max_length=100,
@@ -81,18 +82,18 @@ print(f"A: {answer}")
 
 ```bash
 # Generate answers
-medllm-generate --prompt "What causes hypertension?" --max-length 100
+gptgpt-generate --prompt "How do I train a custom model?" --max-length 100
 
 # Train model
-medllm-train --model-size small --num-epochs 10 --batch-size 16
+gptgpt-train --model-size small --num-epochs 10 --batch-size 16
 ```
 
 ### Training Your Own Model
 
 ```python
-from training.train import main
-from configs.train_config import get_default_config
-from model.configs.model_config import get_small_config
+from gptgpt.training.train import main
+from gptgpt.configs.train_config import get_default_config
+from gptgpt.model.configs.model_config import get_small_config
 
 # Configure training
 train_config = get_default_config()
@@ -112,14 +113,14 @@ The model uses a custom GPT-based transformer architecture:
 - **Transformer Blocks**: Multi-head self-attention + feed-forward networks
 - **Parameters**: ~10M (small), ~50M (medium)
 - **Context Length**: 512 tokens
-- **Vocabulary**: Custom SentencePiece tokenizer trained on medical text
+- **Vocabulary**: Custom SentencePiece tokenizer trained on your data
 
 ## Configuration
 
 ### Model Sizes
 
 ```python
-from model.configs.model_config import (
+from gptgpt.model.configs.model_config import (
     get_tiny_config,   # ~2M parameters - for testing
     get_small_config,  # ~10M parameters - recommended
     get_medium_config  # ~50M parameters - higher quality
@@ -129,7 +130,7 @@ from model.configs.model_config import (
 ### Training Configuration
 
 ```python
-from configs.train_config import TrainingConfig
+from gptgpt.configs.train_config import TrainingConfig
 
 config = TrainingConfig(
     batch_size=16,
@@ -143,7 +144,7 @@ config = TrainingConfig(
 ## Project Structure
 
 ```
-llm-med/
+gptgpt/
 ├── model/
 │   ├── architecture/      # GPT transformer implementation
 │   └── configs/           # Model configurations

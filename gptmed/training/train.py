@@ -83,7 +83,7 @@ def count_parameters(model):
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Train GPT model on MedQuAD")
+    parser = argparse.ArgumentParser(description="Train your GPT model")
 
     # Model config
     parser.add_argument(
@@ -136,7 +136,7 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("GPT Training - MedQuAD")
+    print("GPT Training Script")
     print("=" * 60)
 
     # Check CUDA availability
@@ -170,7 +170,6 @@ def main():
         print("Using quick test config (fast debugging)")
     else:
         train_config = get_default_config()
-
     # Override with command-line args
     if args.batch_size is not None:
         train_config.batch_size = args.batch_size

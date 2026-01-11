@@ -1,0 +1,64 @@
+# GptMed Training Configuration File
+# Edit these parameters for your training needs
+
+# ============================================================
+# MODEL CONFIGURATION
+# ============================================================
+model:
+  size: small                    # Options: tiny, small, medium
+                                 # tiny: ~2M params (testing)
+                                 # small: ~10M params (recommended)
+                                 # medium: ~50M params (high quality)
+
+# ============================================================
+# DATA PATHS
+# ============================================================
+data:
+  train_data: ./data/tokenized/train.npy    # Path to training data (.npy file)
+  val_data: ./data/tokenized/val.npy        # Path to validation data (.npy file)
+
+# ============================================================
+# TRAINING HYPERPARAMETERS
+# ============================================================
+training:
+  num_epochs: 10                 # Number of training epochs
+  batch_size: 16                 # Batch size (reduce if OOM: 8, 4)
+  learning_rate: 0.0003          # Learning rate (3e-4)
+  weight_decay: 0.01             # Weight decay for regularization
+  grad_clip: 1.0                 # Gradient clipping value
+  warmup_steps: 100              # Learning rate warmup steps
+  
+# ============================================================
+# OPTIMIZER SETTINGS
+# ============================================================
+optimizer:
+  betas: [0.9, 0.95]             # Adam beta parameters
+  eps: 1.0e-8                    # Adam epsilon
+
+# ============================================================
+# CHECKPOINTING & LOGGING
+# ============================================================
+checkpointing:
+  checkpoint_dir: ./model/checkpoints    # Directory to save checkpoints
+  save_every: 1                          # Save checkpoint every N epochs
+  keep_last_n: 3                         # Keep last N checkpoints
+  
+logging:
+  log_dir: ./logs                # Directory for training logs
+  eval_every: 100                # Evaluate every N steps
+  log_every: 10                  # Log metrics every N steps
+
+# ============================================================
+# DEVICE & PERFORMANCE
+# ============================================================
+device:
+  device: cuda                   # Options: cuda, cpu
+  seed: 42                       # Random seed for reproducibility
+
+# ============================================================
+# ADVANCED OPTIONS (optional)
+# ============================================================
+advanced:
+  max_steps: -1                  # Max training steps (-1 = use num_epochs)
+  resume_from: null              # Path to checkpoint to resume from (null = start fresh)
+  quick_test: false              # Use quick test config for debugging

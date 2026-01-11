@@ -1,18 +1,29 @@
 """
-llm-med: A lightweight medical question-answering language model
+GptMed: A lightweight GPT-based language model framework
 
-This package provides a GPT-based transformer architecture trained on the MedQuAD dataset
-for medical domain question answering.
+A domain-agnostic framework for training custom question-answering models.
+Train your own GPT model on any Q&A dataset - medical, technical support,
+education, or any other domain.
 
-Main Components:
-- model: GPT transformer architecture
-- inference: Text generation and sampling
-- training: Training loop and utilities
-- tokenizer: SentencePiece tokenizer
-- configs: Configuration management
-- utils: Utility functions
+Quick Start:
+    >>> import gptmed
+    >>> 
+    >>> # 1. Create a config file
+    >>> gptmed.create_config('my_config.yaml')
+    >>> 
+    >>> # 2. Edit my_config.yaml with your settings
+    >>> 
+    >>> # 3. Train your model
+    >>> results = gptmed.train_from_config('my_config.yaml')
+    >>> 
+    >>> # 4. Generate answers
+    >>> answer = gptmed.generate(
+    ...     checkpoint=results['best_checkpoint'],
+    ...     tokenizer='tokenizer/my_tokenizer.model',
+    ...     prompt='Your question here?'
+    ... )
 
-Example:
+Advanced Usage:
     >>> from gptmed.model.architecture import GPTTransformer
     >>> from gptmed.model.configs.model_config import get_small_config
     >>> from gptmed.inference.generator import TextGenerator
@@ -25,11 +36,23 @@ __version__ = "0.2.0"
 __author__ = "Sanjog Sigdel"
 __email__ = "sigdelsanjog@gmail.com"
 
+# High-level API - Main user interface
+from gptmed.api import (
+    create_config,
+    train_from_config,
+    generate,
+)
+
 # Expose main components at package level for convenience
 from gptmed.model.architecture import GPTTransformer
 from gptmed.model.configs.model_config import ModelConfig, get_small_config, get_tiny_config
 
 __all__ = [
+    # Simple API
+    "create_config",
+    "train_from_config", 
+    "generate",
+    # Advanced API
     "GPTTransformer",
     "ModelConfig",
     "get_small_config",

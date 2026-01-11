@@ -1,14 +1,17 @@
 name: Publish to PyPI
 
-# Trigger on push to main branch or manual workflow dispatch
+# Trigger on tag push matching version pattern (v*.*.*)
 on:
   push:
-    branches:
-      - main
-  workflow_dispatch:  
+    tags:
+      - 'v*.*.*'  # Triggers on tags like v0.1.0, v1.2.3, etc.
+  workflow_dispatch:  # Allow manual trigger
+
+permissions:
+  contents: read
 
 jobs:
-  deploy:
+  build-and-publish:
     runs-on: ubuntu-latest
     
     steps:
@@ -19,8 +22,29 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: '3.10'
+    
+    - name: Extract version from tag
+      id: get_version
+      run: |
+        # Extract version from tag (v0.1.0 -> 0.1.0)
+        VERSION=${GITHUB_REF#refs/tags/v}
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Publishing version: $VERSION"
         
-    - name: Install dependencies
+    - name: Verify version in pyproject.toml matches tag
+      run: |
+        TOML_VERSION=$(grep '^version' pyproject.toml | cut -d'"' -f2)
+        TAG_VERSION=${{ steps.get_version.outputs.VERSION }}
+        echo "pyproject.toml version: $TOML_VERSION"
+        echo "Git tag version: $TAG_VERSION"
+        if [ "$TOML_VERSION" != "$TAG_VERSION" ]; then
+          echo "ERROR: Version mismatch!"
+          echo "pyproject.toml has version $TOML_VERSION but tag is v$TAG_VERSION"
+          exit 1
+        fi
+        echo "✓ Versions match"
+        
+    - name: Install build dependencies
       run: |
         python -m pip install --upgrade pip
         pip install build twine wheel setuptools
@@ -28,25 +52,37 @@ jobs:
     - name: Build package
       run: |
         python -m build
+        ls -lh dist/
         
     - name: Check package with twine
       run: |
-        # Note: twine may report false positives for newer metadata formats
-        # The package will still upload successfully to PyPI
-        twine check dist/* || true
+        twine check dist/*
         
-    # - name: Publish to Test PyPI (optional step)
-    #   if: github.event_name == 'workflow_dispatch'
-    #   env:
-    #     TWINE_USERNAME: __token__
-    #     TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
-    #   run: |
-    #     twine upload --repository testpypi dist/* --skip-existing
+    - name: Publish to Test PyPI (optional)
+      if: github.event_name == 'workflow_dispatch'
+      env:
+        TWINE_USERNAME: __token__
+        TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
+      run: |
+        echo "Publishing to Test PyPI..."
+        twine upload --repository testpypi dist/* --skip-existing
         
     - name: Publish to PyPI
-      # Remove the 'if' condition to publish on every main branch push
+      if: startsWith(github.ref, 'refs/tags/')
       env:
         TWINE_USERNAME: __token__
         TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
       run: |
+        echo "Publishing to PyPI..."
         twine upload dist/*
+        
+    - name: Create GitHub Release
+      if: startsWith(github.ref, 'refs/tags/')
+      uses: softprops/action-gh-release@v1
+      with:
+        files: dist/*
+        generate_release_notes: true
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

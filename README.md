@@ -36,6 +36,7 @@ If you use this model in your research, please cite:
 - [Configuration](#configuration)
   - [Model Sizes](#model-sizes)
   - [Training Configuration](#training-configuration)
+- [Observability](#observability)
 - [Project Structure](#project-structure)
 - [Requirements](#requirements)
 - [Documentation](#documentation)
@@ -68,11 +69,17 @@ pip install -e .
 # For development
 pip install gptmed[dev]
 
-# For training
+# For training with logging integrations
 pip install gptmed[training]
 
+# For visualization (loss curves, metrics plots)
+pip install gptmed[visualization]
+
+# For Explainable AI features
+pip install gptmed[xai]
+
 # All dependencies
-pip install gptmed[dev,training]
+pip install gptmed[dev,training,visualization,xai]
 ```
 
 ## Quick Start
@@ -200,6 +207,50 @@ config = TrainingConfig(
 )
 ```
 
+## Observability
+
+**New in v0.4.0**: Built-in training monitoring with Observer Pattern architecture.
+
+### Features
+
+- 📊 **Loss Curves**: Track training/validation loss over time
+- 📈 **Metrics Tracking**: Perplexity, gradient norms, learning rates
+- 🔔 **Callbacks**: Console output, JSON logging, early stopping
+- 📁 **Export**: CSV export, matplotlib visualizations
+- 🔌 **Extensible**: Add custom observers for integrations (W&B, TensorBoard)
+
+### Quick Example
+
+```python
+from gptmed.observability import MetricsTracker, ConsoleCallback, EarlyStoppingCallback
+
+# Create observers
+tracker = MetricsTracker(output_dir='./metrics')
+console = ConsoleCallback(print_every=50)
+early_stop = EarlyStoppingCallback(patience=3)
+
+# Use with TrainingService (automatic)
+from gptmed.services import TrainingService
+service = TrainingService(config_path='config.yaml')
+service.train()  # Automatically creates MetricsTracker
+
+# Or use with Trainer directly
+trainer = Trainer(model, train_loader, config, observers=[tracker, console])
+trainer.train()
+```
+
+### Available Observers
+
+| Observer                | Description                                               |
+| ----------------------- | --------------------------------------------------------- |
+| `MetricsTracker`        | Comprehensive metrics collection with export capabilities |
+| `ConsoleCallback`       | Real-time console output with progress bars               |
+| `JSONLoggerCallback`    | Structured JSON logging for analysis                      |
+| `EarlyStoppingCallback` | Stop training when validation loss plateaus               |
+| `LRSchedulerCallback`   | Learning rate scheduling integration                      |
+
+See [XAI.md](XAI.md) for future Explainable AI features roadmap.
+
 ## Project Structure
 
 ```
@@ -214,10 +265,16 @@ gptmed/
 │   ├── train.py          # Training script
 │   ├── trainer.py        # Training loop
 │   └── dataset.py        # Data loading
+├── observability/         # Training monitoring & XAI (v0.4.0+)
+│   ├── base.py           # Observer pattern interfaces
+│   ├── metrics_tracker.py # Loss curves & metrics
+│   └── callbacks.py      # Console, JSON, early stopping
 ├── tokenizer/
 │   └── train_tokenizer.py # SentencePiece tokenizer
 ├── configs/
 │   └── train_config.py   # Training configurations
+├── services/
+│   └── training_service.py # High-level training orchestration
 └── utils/
     ├── checkpoints.py    # Model checkpointing
     └── logging.py        # Training logging
@@ -239,6 +296,7 @@ gptmed/
 
 - [User Manual](USER_MANUAL.md) - **Start here!** Complete training pipeline guide
 - [Architecture Guide](ARCHITECTURE_EXTENSION_GUIDE.md) - Understanding the model architecture
+- [XAI Roadmap](XAI.md) - Explainable AI features & implementation guide
 - [Deployment Guide](DEPLOYMENT_GUIDE.md) - Publishing to PyPI
 - [Changelog](CHANGELOG.md) - Version history
 
@@ -254,20 +312,53 @@ _Tested on GTX 1080 8GB_
 
 ## Examples
 
-### Medical Question Answering
+### Domain-Agnostic Usage
+
+GptMed works with **any domain** - just train on your own Q&A data:
 
 ```python
-# Example 1: Symptoms inquiry
-question = "What are the early signs of Alzheimer's disease?"
+# Technical Support Bot
+question = "How do I reset my WiFi router?"
 answer = generator.generate(question, temperature=0.7)
 
-# Example 2: Treatment information
-question = "How is Type 2 diabetes treated?"
+# Educational Assistant
+question = "Explain the water cycle in simple terms"
 answer = generator.generate(question, temperature=0.6)
 
-# Example 3: Medical definitions
-question = "What is hypertension?"
+# Customer Service
+question = "What is your return policy?"
 answer = generator.generate(question, temperature=0.5)
+
+# Medical Q&A (example domain)
+question = "What are the symptoms of flu?"
+answer = generator.generate(question, temperature=0.7)
+```
+
+### Training Observability (v0.4.0+)
+
+Monitor your training with built-in observability:
+
+```python
+from gptmed.observability import MetricsTracker, ConsoleCallback
+
+# Create observers
+tracker = MetricsTracker(output_dir='./metrics')
+console = ConsoleCallback(print_every=10)
+
+# Train with observability
+gptmed.train_from_config(
+    'my_config.yaml',
+    observers=[tracker, console]
+)
+
+# After training - get the report
+report = tracker.get_report()
+print(f"Final Loss: {report['final_loss']:.4f}")
+print(f"Total Steps: {report['total_steps']}")
+
+# Export metrics
+tracker.export_to_csv('training_metrics.csv')
+tracker.plot_loss_curves('loss_curves.png')  # Requires matplotlib
 ```
 
 ## Contributing

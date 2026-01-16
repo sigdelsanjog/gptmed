@@ -3,7 +3,14 @@ GptMed: A lightweight GPT-based language model framework
 
 A domain-agnostic framework for training custom question-answering models.
 Train your own GPT model on any Q&A dataset - medical, technical support,
-education, or any other domain.
+education, legal, customer service, or any other domain.
+
+Key Features:
+    - Simple 3-step training: config → train → generate
+    - Built-in training observability with loss curves and metrics
+    - Flexible model sizes (tiny, small, medium)
+    - Device-agnostic (CPU/CUDA with auto-detection)
+    - XAI-ready architecture for model interpretability
 
 Quick Start:
     >>> import gptmed
@@ -13,7 +20,7 @@ Quick Start:
     >>> 
     >>> # 2. Edit my_config.yaml with your settings
     >>> 
-    >>> # 3. Train your model
+    >>> # 3. Train your model (with automatic metrics tracking)
     >>> results = gptmed.train_from_config('my_config.yaml')
     >>> 
     >>> # 4. Generate answers
@@ -22,6 +29,16 @@ Quick Start:
     ...     tokenizer='tokenizer/my_tokenizer.model',
     ...     prompt='Your question here?'
     ... )
+
+Observability (v0.4.0+):
+    >>> from gptmed import MetricsTracker, EarlyStoppingCallback
+    >>> 
+    >>> # Training automatically tracks metrics and generates reports:
+    >>> # - Loss curves (train/val)
+    >>> # - Gradient norms
+    >>> # - Learning rate schedule
+    >>> # - Perplexity
+    >>> # - Training health checks
 
 Advanced Usage:
     >>> from gptmed.model.architecture import GPTTransformer
@@ -32,7 +49,7 @@ Advanced Usage:
     >>> model = GPTTransformer(config)
 """
 
-__version__ = "0.3.3"
+__version__ = "0.4.0"
 __author__ = "Sanjog Sigdel"
 __email__ = "sigdelsanjog@gmail.com"
 

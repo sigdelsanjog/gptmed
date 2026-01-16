@@ -1,7 +1,7 @@
 """
-MedLLM Model Package
+GPTMED Model Package
 
-This package contains the GPT-based transformer architecture for medical QA.
+This package contains the GPT-based transformer architecture for general purpose QA.
 """
 
 from gptmed.model.architecture import GPTTransformer

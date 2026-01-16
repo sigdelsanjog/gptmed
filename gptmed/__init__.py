@@ -47,6 +47,16 @@ from gptmed.api import (
 from gptmed.model.architecture import GPTTransformer
 from gptmed.model.configs.model_config import ModelConfig, get_small_config, get_tiny_config
 
+# Observability module
+from gptmed.observability import (
+    TrainingObserver,
+    ObserverManager,
+    MetricsTracker,
+    ConsoleCallback,
+    JSONLoggerCallback,
+    EarlyStoppingCallback,
+)
+
 __all__ = [
     # Simple API
     "create_config",
@@ -57,4 +67,11 @@ __all__ = [
     "ModelConfig",
     "get_small_config",
     "get_tiny_config",
+    # Observability
+    "TrainingObserver",
+    "ObserverManager",
+    "MetricsTracker",
+    "ConsoleCallback",
+    "JSONLoggerCallback",
+    "EarlyStoppingCallback",
 ]

@@ -26,7 +26,7 @@ import torch
 import random
 import numpy as np
 from pathlib import Path
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 
 from gptmed.services.device_manager import DeviceManager
 from gptmed.model.architecture import GPTTransformer
@@ -34,6 +34,13 @@ from gptmed.model.configs.model_config import get_tiny_config, get_small_config,
 from gptmed.configs.train_config import TrainingConfig
 from gptmed.training.dataset import create_dataloaders
 from gptmed.training.trainer import Trainer
+
+# Observability imports
+from gptmed.observability import (
+    TrainingObserver,
+    MetricsTracker,
+    ConsoleCallback,
+)
 
 
 class TrainingService:
@@ -162,7 +169,8 @@ class TrainingService:
         optimizer,
         train_config: TrainingConfig,
         device: str,
-        model_config_dict: dict
+        model_config_dict: dict,
+        observers: Optional[List[TrainingObserver]] = None,
     ) -> Dict[str, Any]:
         """
         Execute the training process.
@@ -175,13 +183,20 @@ class TrainingService:
             train_config: Training configuration
             device: Device to use
             model_config_dict: Model configuration as dictionary
+            observers: Optional list of TrainingObserver instances.
+                       If None, default observers (MetricsTracker) will be used.
             
         Returns:
             Dictionary with training results
         """
-        # Create trainer
+        # Set up default observers if none provided
+        if observers is None:
+            observers = self._create_default_observers(train_config)
+        
+        # Create trainer with observers
         if self.verbose:
             print(f"\n🎯 Initializing trainer...")
+            print(f"   Observers: {len(observers)} ({', '.join(o.name for o in observers)})")
         
         trainer = Trainer(
             model=model,
@@ -190,6 +205,7 @@ class TrainingService:
             optimizer=optimizer,
             config=train_config,
             device=device,
+            observers=observers,
         )
         
         # Resume if requested
@@ -238,6 +254,29 @@ class TrainingService:
             'log_dir': train_config.log_dir,
         }
         
+        # Get metrics tracker if available and generate reports
+        metrics_tracker = self._get_metrics_tracker(observers)
+        if metrics_tracker:
+            # Export metrics
+            metrics_tracker.export_to_csv()
+            metrics_tracker.export_to_json()
+            
+            # Try to plot (will skip if matplotlib not installed)
+            try:
+                metrics_tracker.plot_loss_curves()
+            except Exception as e:
+                if self.verbose:
+                    print(f"   (Could not generate plots: {e})")
+            
+            # Check for issues
+            issues = metrics_tracker.detect_issues()
+            results['training_issues'] = issues
+            
+            if self.verbose:
+                print(f"\n📋 Training Health Check:")
+                for issue in issues:
+                    print(f"   {issue}")
+        
         if self.verbose:
             print(f"\n{'='*60}")
             print("✅ Training Complete!")
@@ -247,6 +286,52 @@ class TrainingService:
             print(f"  Best val loss: {results['final_val_loss']:.4f}")
             print(f"  Total epochs: {results['total_epochs']}")
             print(f"  Logs: {results['log_dir']}")
+        
+        return results
+    
+    def _create_default_observers(self, train_config: TrainingConfig) -> List[TrainingObserver]:
+        """
+        Create default observers for training.
+        
+        Args:
+            train_config: Training configuration
+            
+        Returns:
+            List of default TrainingObserver instances
+        """
+        observers = []
+        
+        # MetricsTracker - comprehensive metrics logging
+        metrics_tracker = MetricsTracker(
+            log_dir=train_config.log_dir,
+            experiment_name="gptmed_training",
+            moving_avg_window=100,
+            log_interval=train_config.log_interval,
+            verbose=self.verbose,
+        )
+        observers.append(metrics_tracker)
+        
+        # Note: ConsoleCallback is optional since Trainer already has console output
+        # Uncomment if you want additional formatted console output:
+        # console_callback = ConsoleCallback(log_interval=train_config.log_interval)
+        # observers.append(console_callback)
+        
+        return observers
+    
+    def _get_metrics_tracker(self, observers: List[TrainingObserver]) -> Optional[MetricsTracker]:
+        """
+        Get MetricsTracker from observers list if present.
+        
+        Args:
+            observers: List of observers
+            
+        Returns:
+            MetricsTracker instance or None
+        """
+        for obs in observers:
+            if isinstance(obs, MetricsTracker):
+                return obs
+        return None
         
         return results
     

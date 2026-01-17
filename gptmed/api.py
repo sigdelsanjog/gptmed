@@ -203,6 +203,7 @@ def train_from_config(
         log_dir=args['log_dir'],
         device=actual_device,  # Use actual device from DeviceManager
         seed=args['seed'],
+        resume_from=args.get('resume_from'),  # Pass resume checkpoint path
     )
     
     # Create optimizer

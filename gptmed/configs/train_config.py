@@ -37,6 +37,7 @@ COMMON FAILURE MODES:
 
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Optional
 import json
 
 
@@ -91,6 +92,9 @@ class TrainingConfig:
     # Reproducibility
     seed: int = 42
 
+    # Resume training
+    resume_from: Optional[str] = None  # Path to checkpoint to resume from
+
     def to_dict(self) -> dict:
         """Convert to dictionary."""
         return {
@@ -117,6 +121,7 @@ class TrainingConfig:
             "device": self.device,
             "use_amp": self.use_amp,
             "seed": self.seed,
+            "resume_from": self.resume_from,
         }
 
     def save(self, path: Path):

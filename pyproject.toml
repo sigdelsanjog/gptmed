@@ -75,18 +75,20 @@ gptmed-train = "gptmed.training.train:main"
 [tool.setuptools]
 packages = [
     "gptmed",
-    "gptmed.model",
-    "gptmed.model.architecture",
-    "gptmed.model.configs",
-    "gptmed.inference",
-    "gptmed.training",
-    "gptmed.services",
-    "gptmed.utils",
     "gptmed.configs",
     "gptmed.data",
     "gptmed.data.parsers",
-    "gptmed.tokenizer",
+    "gptmed.framework",
+    "gptmed.framework.cli",
+    "gptmed.inference",
+    "gptmed.model",
+    "gptmed.model.architecture",
+    "gptmed.model.configs",
     "gptmed.observability",
+    "gptmed.services",
+    "gptmed.training",
+    "gptmed.tokenizer",
+    "gptmed.utils",
 ]
 
 [tool.setuptools.package-data]

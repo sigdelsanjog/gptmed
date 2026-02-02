@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gptmed"
-version = "0.5.5"
+version = "0.6.0"
 description = "A lightweight GPT-based language model framework for training custom question-answering models on any domain"
 readme = "README.md"
 requires-python = ">=3.8"
@@ -60,6 +60,13 @@ xai = [
     "captum>=0.6.0",
     "scikit-learn>=1.0.0",
 ]
+data-preparation = [
+    "pillow>=9.0.0",
+    "librosa>=0.10.0",
+    "soundfile>=0.12.0",
+    "opencv-python>=4.5.0",
+    "numpy>=1.24.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/sigdelsanjog/gptmed"
@@ -71,6 +78,7 @@ Issues = "https://github.com/sigdelsanjog/gptmed/issues"
 gptmed = "gptmed.framework.cli:main"
 gptmed-generate = "gptmed.inference.generator:main"
 gptmed-train = "gptmed.training.train:main"
+data-preparation = "gptmed.data_preparation.cli:main"
 
 [tool.setuptools]
 packages = [
@@ -78,6 +86,11 @@ packages = [
     "gptmed.configs",
     "gptmed.data",
     "gptmed.data.parsers",
+    "gptmed.data_preparation",
+    "gptmed.data_preparation.text",
+    "gptmed.data_preparation.image",
+    "gptmed.data_preparation.audio",
+    "gptmed.data_preparation.video",
     "gptmed.framework",
     "gptmed.framework.cli",
     "gptmed.inference",

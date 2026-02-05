@@ -21,6 +21,7 @@ from dataclasses import dataclass, asdict
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 from gptmed.data_preparation.text import PDFProcessor
+from gptmed.data_preparation.PDFBatchProcessMonitor import PDFBatchProcessMonitor
 
 
 # Configure logging
@@ -72,6 +73,9 @@ class PDFBatchProcessor:
         self.pdf_processor = PDFProcessor(max_workers=max_workers, use_threading=True)
         
         self.logger = logging.getLogger(self.__class__.__name__)
+        
+        # Initialize monitor
+        self.monitor = None
     
     def _extract_pdf(self, pdf_file: Path) -> Optional[PDFRecord]:
         """
@@ -84,6 +88,7 @@ class PDFBatchProcessor:
             PDFRecord with extracted information or None if failed
         """
         start_time = time.time()
+        file_size_kb = pdf_file.stat().st_size / 1024  # Convert bytes to KB
         
         try:
             text = self.pdf_processor.extract_text_from_pdf(str(pdf_file))
@@ -104,38 +109,62 @@ class PDFBatchProcessor:
                 status="success"
             )
             
-            self.logger.info(
-                f"✓ Extracted: {pdf_file.name} "
-                f"({word_count} words, {char_count} chars) in {extraction_time:.2f}s"
-            )
+            # Record in monitor
+            if self.monitor:
+                self.monitor.record_file_processed(
+                    filename=pdf_file.name,
+                    file_size_kb=file_size_kb,
+                    processing_time=extraction_time,
+                    success=True
+                )
             
             return record
             
         except Exception as e:
-            self.logger.error(f"✗ Failed to extract {pdf_file.name}: {str(e)}")
+            extraction_time = time.time() - start_time
+            error_msg = str(e)
+            
+            # Record in monitor
+            if self.monitor:
+                self.monitor.record_file_processed(
+                    filename=pdf_file.name,
+                    file_size_kb=file_size_kb,
+                    processing_time=extraction_time,
+                    success=False,
+                    status_message=error_msg
+                )
+            
+            self.logger.error(f"✗ Failed to extract {pdf_file.name}: {error_msg}")
             return PDFRecord(
                 filename=pdf_file.name,
                 text="",
                 word_count=0,
                 char_count=0,
                 sentence_count=0,
-                extraction_time=time.time() - start_time,
-                status=f"error: {str(e)}"
+                extraction_time=extraction_time,
+                status=f"error: {error_msg}"
             )
     
     def _process_pdfs_parallel(self) -> List[PDFRecord]:
         """
-        Process all PDFs in parallel
+        Process all PDFs in parallel, including nested directories
         
         Returns:
             List of PDFRecord objects
         """
-        # Find all PDF files
-        pdf_files = sorted(self.input_dir.glob('*.pdf'))
+        # Find all PDF files recursively in all subdirectories
+        pdf_files = sorted(self.input_dir.glob('**/*.pdf'))
         
         if not pdf_files:
             self.logger.warning(f"No PDF files found in {self.input_dir}")
             return []
+        
+        # Initialize monitor
+        self.monitor = PDFBatchProcessMonitor(
+            total_files=len(pdf_files),
+            logger=self.logger
+        )
+        self.monitor.start_logging()
         
         self.logger.info(
             f"Processing {len(pdf_files)} PDF files with {self.max_workers} workers..."
@@ -195,28 +224,28 @@ class PDFBatchProcessor:
         successful = [r for r in records if r.status == "success"]
         failed = [r for r in records if r.status != "success"]
         
-        self.logger.info(f"\nExtraction Results:")
-        self.logger.info(f"  ✓ Successful: {len(successful)}/{len(records)}")
-        self.logger.info(f"  ✗ Failed: {len(failed)}/{len(records)}")
-        
         total_time = time.time() - start_time
         
         # Calculate statistics
         total_words = sum(r.word_count for r in successful)
         total_chars = sum(r.char_count for r in successful)
         
-        # Print summary
-        self.logger.info(f"\n" + "="*60)
-        self.logger.info(f"Processing Summary")
-        self.logger.info(f"="*60)
+        # Log final monitoring summary
+        if self.monitor:
+            self.monitor.log_final_summary()
+        
+        # Print additional summary
+        self.logger.info("\n" + "="*60)
+        self.logger.info("EXTRACTION RESULTS SUMMARY")
+        self.logger.info("="*60)
         self.logger.info(f"Total PDFs: {len(records)}")
         self.logger.info(f"Successfully processed: {len(successful)}")
         self.logger.info(f"Failed: {len(failed)}")
         self.logger.info(f"Total words extracted: {total_words:,}")
         self.logger.info(f"Total characters: {total_chars:,}")
         self.logger.info(f"Note: Records processed in-memory for preprocessing")
-        self.logger.info(f"Total processing time: {total_time:.2f}s")
-        self.logger.info(f"="*60)
+        self.logger.info(f"Total end-to-end time: {total_time:.2f}s")
+        self.logger.info(f"="*60 + "\n")
         
         return {
             'status': 'success',
@@ -250,7 +279,7 @@ def main():
     parser.add_argument(
         '--workers',
         type=int,
-        default=4,
+        default=10,
         help='Number of parallel workers (default: 4)'
     )
     

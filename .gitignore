@@ -148,3 +148,5 @@ data/tokenized/*.npy
 !data/tokenized/.gitkeep
 !model/checkpoints/.gitkeep
 !logs/.gitkeep
+*/*.pdf
+*.pdf

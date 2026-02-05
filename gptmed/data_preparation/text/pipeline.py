@@ -69,7 +69,7 @@ class EndToEndPipeline:
         output_dir: str = "./output",
         tokenizer_method: str = "huggingface",
         tokenizer_model: str = "gpt2",
-        workers: int = 4,
+        workers: int = 10,
         case_mode: str = "lower",
         remove_stopwords: bool = False,
         remove_punctuation: bool = False,

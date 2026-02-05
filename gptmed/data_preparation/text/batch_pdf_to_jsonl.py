@@ -21,7 +21,7 @@ from dataclasses import dataclass, asdict
 sys.path.insert(0, str(Path(__file__).parent.parent.parent.parent))
 
 from gptmed.data_preparation.text import PDFProcessor
-from gptmed.data_preparation.PDFBatchProcessMonitor import PDFBatchProcessMonitor
+from gptmed.data_preparation.text.config import PDFBatchProcessMonitor
 
 
 # Configure logging

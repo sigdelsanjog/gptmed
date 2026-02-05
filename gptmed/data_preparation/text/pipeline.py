@@ -21,6 +21,7 @@ import sys
 import json
 import logging
 import time
+import torch
 from pathlib import Path
 from typing import Dict, List, Any
 from dataclasses import asdict
@@ -73,6 +74,7 @@ class EndToEndPipeline:
         case_mode: str = "lower",
         remove_stopwords: bool = False,
         remove_punctuation: bool = False,
+        device: str = "gpu",
     ):
         """
         Initialize pipeline
@@ -86,7 +88,11 @@ class EndToEndPipeline:
             case_mode: Case normalization (lower/upper/title/sentence)
             remove_stopwords: Whether to remove stopwords
             remove_punctuation: Whether to remove punctuation
+            device: Processing device (gpu/cpu, default: gpu)
         """
+        # Initialize logger FIRST (before device configuration)
+        self.logger = logging.getLogger(self.__class__.__name__)
+        
         self.input_dir = Path(input_dir)
         self.output_dir = Path(output_dir)
         self.tokenizer_method = tokenizer_method
@@ -99,12 +105,42 @@ class EndToEndPipeline:
         # Create output directory
         self.output_dir.mkdir(parents=True, exist_ok=True)
         
-        self.logger = logging.getLogger(self.__class__.__name__)
+        # Configure device (GPU/CPU) - NOW logger is available
+        self.device = None
+        self._configure_device(device)
+    
+    def _configure_device(self, device: str):
+        """
+        Configure and validate GPU/CPU device
+        
+        Args:
+            device: Device preference (gpu/cpu)
+        """
+        device = device.lower()
+        
+        if device == "gpu":
+            if torch.cuda.is_available():
+                gpu_count = torch.cuda.device_count()
+                self.logger.info(f"✓ GPU detected: {torch.cuda.get_device_name(0)}")
+                self.logger.info(f"  Available GPUs: {gpu_count}")
+                self.logger.info(f"  CUDA Version: {torch.version.cuda}")
+                self.device = "cuda"
+            else:
+                self.logger.warning("GPU requested but not available. Falling back to CPU.")
+                self.device = "cpu"
+        elif device == "cpu":
+            self.logger.info("Using CPU for processing")
+            self.device = "cpu"
+        else:
+            self.logger.warning(f"Unknown device '{device}'. Using GPU if available, else CPU.")
+            self.device = "cuda" if torch.cuda.is_available() else "cpu"
     
     def step1_extract_pdfs(self) -> List[PDFRecord]:
         """Step 1: Extract text from PDFs in-memory"""
         self.logger.info("\n" + "="*70)
         self.logger.info("STEP 1: PDF EXTRACTION")
+        self.logger.info("="*70)
+        self.logger.info(f"Processing Device: {self.device.upper()}")
         self.logger.info("="*70)
         
         processor = PDFBatchProcessor(
@@ -307,6 +343,12 @@ def main():
         action='store_true',
         help='Remove punctuation during preprocessing'
     )
+    parser.add_argument(
+        '--device',
+        default='gpu',
+        choices=['gpu', 'cpu'],
+        help='Processing device - gpu or cpu (default: gpu)'
+    )
     
     args = parser.parse_args()
     
@@ -320,6 +362,7 @@ def main():
         case_mode=args.case_mode,
         remove_stopwords=args.remove_stopwords,
         remove_punctuation=args.remove_punctuation,
+        device=args.device,
     )
     
     result = pipeline.run()

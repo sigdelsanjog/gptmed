@@ -11,6 +11,7 @@ import torch
 import torch.nn as nn
 from .embeddings import TokenPositionalEmbedding
 from .decoder_block import TransformerDecoderBlock
+from .quantized_layers import QuantizedLinear
 
 
 class ConversationLanguageModel(nn.Module):
@@ -73,8 +74,8 @@ class ConversationLanguageModel(nn.Module):
         # Final layer normalization
         self.final_norm = nn.LayerNorm(d_model)
         
-        # Output projection to vocabulary
-        self.output_projection = nn.Linear(d_model, vocab_size)
+        # Output projection to vocabulary (quantized for memory efficiency)
+        self.output_projection = QuantizedLinear(d_model, vocab_size)
         
         # Initialize weights
         self._init_weights()

@@ -26,9 +26,10 @@ def train_model(
     d_model: int = 256,
     n_layers: int = 4,
     n_heads: int = 8,
-    batch_size: int = 32,
+    batch_size: int = 2,
     num_epochs: int = 10,
     device: str = 'cuda',
+    resume: bool = True,
 ):
     """
     Train conversation model
@@ -41,6 +42,7 @@ def train_model(
         batch_size: Training batch size
         num_epochs: Number of epochs
         device: Device to train on (cuda/cpu)
+        resume: Resume from last checkpoint (default: True)
     """
     import torch
     from framework.conversation.training.train import Trainer
@@ -72,7 +74,7 @@ def train_model(
     )
     
     trainer = Trainer(config)
-    trainer.train(data_file)
+    trainer.train(data_file, resume=resume)
     
     logger.info("Training completed!")
 
@@ -253,6 +255,11 @@ def main():
         default='cuda', 
         help='Device to train on (e.g., cuda, cuda:0, cpu)'
     )
+    train_parser.add_argument(
+        '--no-resume',
+        action='store_true',
+        help='Start fresh training without resuming from checkpoint'
+    )
     
     # Inference command
     infer_parser = subparsers.add_parser('inference', help='Run interactive inference')
@@ -305,6 +312,7 @@ def main():
                 batch_size=args.batch_size,
                 num_epochs=args.num_epochs,
                 device=args.device,
+                resume=not args.no_resume,
             )
         
         elif args.command == 'inference':

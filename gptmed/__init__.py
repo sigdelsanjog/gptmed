@@ -53,6 +53,17 @@ __version__ = "0.4.0"
 __author__ = "Sanjog Sigdel"
 __email__ = "sigdelsanjog@gmail.com"
 
+# Initialize framework (creates logs folder and other necessary directories)
+# This is done lazily to avoid import errors when framework is initialized
+def _initialize_framework():
+    try:
+        from gptmed.framework.logging_utils import get_framework_logs_dir
+        get_framework_logs_dir()
+    except Exception:
+        pass  # Framework initialization is optional for backwards compatibility
+
+_initialize_framework()
+
 # High-level API - Main user interface
 from gptmed.api import (
     create_config,

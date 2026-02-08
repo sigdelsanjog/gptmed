@@ -4,8 +4,22 @@ Conversation Model Configuration
 Hyperparameters and settings for training the conversation language model.
 """
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
+from pathlib import Path
+
+
+def get_default_checkpoint_dir() -> str:
+    """
+    Get the default checkpoint directory.
+    
+    Returns the string "./checkpoints" which will be resolved relative to
+    the current working directory when the training script is run.
+    
+    When user installs gptmed and runs training from their directory,
+    checkpoints will be saved in ./checkpoints/ in their current working directory.
+    """
+    return "./checkpoints"
 
 
 @dataclass
@@ -13,7 +27,7 @@ class ConversationModelConfig:
     """Configuration for Conversation Language Model"""
     
     # Model Architecture
-    vocab_size: int = 10000  # From tokenizer
+    vocab_size: int = 50256  # From tokenizer (GPT-2 vocab size: 0-50255)
     d_model: int = 256  # Embedding and hidden dimension
     n_layers: int = 4  # Number of decoder blocks
     n_heads: int = 8  # Number of attention heads
@@ -33,10 +47,10 @@ class ConversationModelConfig:
     train_ratio: float = 0.8  # Train/validation split
     num_workers: int = 8
     
-    # Checkpointing
-    checkpoint_dir: str = "./model/checkpoints"
+    # Checkpointing - stored in framework/logs
+    checkpoint_dir: str = field(default_factory=get_default_checkpoint_dir)
     log_interval: int = 50  # Log every N steps
-    save_interval: int = 200  # Save checkpoint every N steps
+    save_interval: int = 300  # Save checkpoint every N steps (with validation)
     gradient_accumulation_steps: int = 1  # For effective larger batches
     
     # Device

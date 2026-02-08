@@ -18,13 +18,10 @@ import json
 from ..model.architecture import ConversationLanguageModel
 from ..model.configs.model_config import ConversationModelConfig
 from .data_loader import get_data_loaders
+from ...logging_utils import setup_training_logger
 
 
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
-logger = logging.getLogger(__name__)
+logger = setup_training_logger(__name__, model_type="conversation")
 
 
 class Trainer:
@@ -38,6 +35,21 @@ class Trainer:
             config: Model configuration
         """
         self.config = config
+        
+        # Smart checkpoint directory resolution (backward compatibility)
+        # If old location exists, use it; otherwise use default
+        checkpoint_dir = Path(config.checkpoint_dir)
+        old_checkpoint_paths = [
+            Path("./model/checkpoints"),
+            Path("model/checkpoints"),
+        ]
+        
+        for old_path in old_checkpoint_paths:
+            if old_path.exists():
+                logger.info(f"Found existing checkpoints in old location: {old_path.resolve()}")
+                self.config.checkpoint_dir = str(old_path.resolve())
+                checkpoint_dir = Path(self.config.checkpoint_dir)
+                break
         
         # Create torch device object (handles both 'cuda' and 'cuda:0')
         self.device = torch.device(config.device)
@@ -114,13 +126,17 @@ class Trainer:
         
         self.global_step = 0
         self.best_val_loss = float('inf')
+        self.start_epoch = 0
+        self.last_checkpoint_step = 0  # Track last checkpoint step
+        self.checkpoint_history = {'latest': None, 'previous': None, 'best': None}  # Checkpoint tracking
     
-    def train_epoch(self, train_loader) -> float:
+    def train_epoch(self, train_loader, val_loader) -> float:
         """
         Train for one epoch
         
         Args:
             train_loader: Data loader for training
+            val_loader: Data loader for validation
             
         Returns:
             Average training loss
@@ -205,9 +221,21 @@ class Trainer:
                     f"Loss: {avg_loss:.4f}"
                 )
                 
-                # Checkpointing
-                if self.global_step % self.config.save_interval == 0:
-                    self.save_checkpoint(tag=f"step_{self.global_step}")
+                # Validate and save checkpoint every save_interval steps
+                if self.global_step % self.config.save_interval == 0 and self.global_step > self.last_checkpoint_step:
+                    logger.info(f"\n💾 Checkpoint interval reached (step {self.global_step})")
+                    # Perform validation
+                    intra_val_loss = self.validate(val_loader)
+                    self.last_checkpoint_step = self.global_step
+                    
+                    # Save checkpoint with rotation (latest, previous, best)
+                    if intra_val_loss < self.best_val_loss:
+                        # Found a better model
+                        self.best_val_loss = intra_val_loss
+                        self.save_checkpoint_rotated(tag="best", step=self.global_step)
+                    else:
+                        # Regular checkpoint
+                        self.save_checkpoint_rotated(tag="latest", step=self.global_step)
             
             except Exception as e:
                 logger.error(f"Error in batch {batch_idx}: {str(e)}", exc_info=True)
@@ -264,24 +292,56 @@ class Trainer:
         
         return avg_loss
     
-    def save_checkpoint(self, tag: str = "best"):
+    def save_checkpoint_rotated(self, tag: str = "latest", step: int = 0):
         """
-        Save model checkpoint
+        Save checkpoint with rotation (keep only latest, previous, and best)
         
         Args:
-            tag: Checkpoint name tag
+            tag: Checkpoint type ("latest" or "best")
+            step: Current step number
         """
-        checkpoint_path = Path(self.config.checkpoint_dir) / f"checkpoint_{tag}.pt"
+        checkpoint_dir = Path(self.config.checkpoint_dir)
+        
+        if tag == "best":
+            checkpoint_path = checkpoint_dir / "checkpoint_best.pt"
+        elif tag == "latest":
+            checkpoint_path = checkpoint_dir / "checkpoint_latest.pt"
+        else:
+            checkpoint_path = checkpoint_dir / f"checkpoint_{tag}.pt"
         
         checkpoint = {
             'step': self.global_step,
+            'epoch': 0,  # Not using epochs with step-based saving
             'model_state': self.model.state_dict(),
             'optimizer_state': self.optimizer.state_dict(),
+            'scheduler_state': self.scheduler.state_dict(),
+            'best_val_loss': self.best_val_loss,
             'config': self.config.to_dict(),
         }
         
         torch.save(checkpoint, checkpoint_path)
-        logger.info(f"Saved checkpoint: {checkpoint_path}")
+        logger.info(f"Saved {tag} checkpoint: {checkpoint_path.name} (step {self.global_step})")
+        logger.debug(f"  Full path: {checkpoint_path.resolve()}")
+        
+        # Rotation logic: move latest to previous when saving new latest
+        if tag == "latest":
+            latest_path = checkpoint_dir / "checkpoint_latest.pt"
+            previous_path = checkpoint_dir / "checkpoint_previous.pt"
+            
+            # If latest exists, move it to previous
+            if latest_path.exists() and latest_path != checkpoint_path:
+                try:
+                    if previous_path.exists():
+                        previous_path.unlink()
+                    latest_path.rename(previous_path)
+                    logger.debug(f"Rotated checkpoint: latest → previous")
+                except Exception as e:
+                    logger.warning(f"Failed to rotate checkpoint: {e}")
+            
+            # Save new latest
+            torch.save(checkpoint, latest_path)
+    
+    
     
     def load_checkpoint(self, checkpoint_path: str):
         """
@@ -289,26 +349,94 @@ class Trainer:
         
         Args:
             checkpoint_path: Path to checkpoint file
+            
+        Returns:
+            epoch: The epoch at which checkpoint was saved
         """
         checkpoint = torch.load(checkpoint_path, map_location=self.device)
         
         self.model.load_state_dict(checkpoint['model_state'])
         self.optimizer.load_state_dict(checkpoint['optimizer_state'])
+        
+        # Load scheduler state if available
+        if 'scheduler_state' in checkpoint:
+            self.scheduler.load_state_dict(checkpoint['scheduler_state'])
+        
         self.global_step = checkpoint['step']
+        self.start_epoch = checkpoint.get('epoch', 0)
+        self.best_val_loss = checkpoint.get('best_val_loss', float('inf'))
         
         logger.info(f"Loaded checkpoint: {checkpoint_path}")
+        logger.info(f"Resuming from epoch {self.start_epoch}, step {self.global_step}")
+        logger.info(f"Best validation loss so far: {self.best_val_loss:.4f}")
+        
+        return self.start_epoch
     
-    def train(self, train_data_file: str):
+    def find_latest_checkpoint(self) -> Optional[Path]:
         """
-        Full training loop
+        Find the most recent checkpoint for resuming training.
+        
+        Priority order:
+        1. checkpoint_latest.pt (most recent)
+        2. checkpoint_previous.pt (previous checkpoint)
+        3. checkpoint_best.pt (best validation loss)
+        4. checkpoint_step_*.pt files (old format)
+        
+        Returns:
+            Path to checkpoint to resume from, or None if no checkpoint exists
+        """
+        checkpoint_dir = Path(self.config.checkpoint_dir)
+        
+        # Try latest checkpoint first (most recent step)
+        latest = checkpoint_dir / "checkpoint_latest.pt"
+        if latest.exists():
+            return latest
+        
+        # Then try previous checkpoint
+        previous = checkpoint_dir / "checkpoint_previous.pt"
+        if previous.exists():
+            return previous
+        
+        # Try best checkpoint
+        best = checkpoint_dir / "checkpoint_best.pt"
+        if best.exists():
+            return best
+        
+        # Check for old checkpoint_step_*.pt files
+        step_checkpoints = sorted(
+            checkpoint_dir.glob("checkpoint_step_*.pt"),
+            key=lambda p: p.stat().st_mtime,
+            reverse=True
+        )
+        if step_checkpoints:
+            return step_checkpoints[0]
+        
+        return None
+    
+    def train(self, train_data_file: str, resume: bool = True):
+        """
+        Full training loop with automatic checkpoint resuming
         
         Args:
             train_data_file: Path to merged_tokens.jsonl
+            resume: Whether to resume from latest checkpoint (default: True)
         """
         logger.info("="*70)
         logger.info("Starting Conversation Model Training")
         logger.info("="*70)
+        logger.info(f"Checkpoint directory: {Path(self.config.checkpoint_dir).resolve()}")
         logger.info(f"Config: {json.dumps(self.config.to_dict(), indent=2)}")
+        
+        # Try to resume from checkpoint if available
+        if resume:
+            latest_checkpoint = self.find_latest_checkpoint()
+            if latest_checkpoint:
+                logger.info(f"\n🔄 Found checkpoint: {latest_checkpoint.name}")
+                logger.info(f"   Path: {latest_checkpoint.resolve()}")
+                self.load_checkpoint(str(latest_checkpoint))
+                logger.info(f"✓ Resuming training from epoch {self.start_epoch + 1}\n")
+            else:
+                logger.info(f"\n✨ No checkpoint found in {Path(self.config.checkpoint_dir).resolve()} - starting fresh training\n")
         
         # Load data
         train_loader, val_loader = get_data_loaders(
@@ -322,21 +450,21 @@ class Trainer:
         # Training loop
         start_time = time.time()
         
-        for epoch in range(self.config.num_epochs):
+        for epoch in range(self.start_epoch, self.config.num_epochs):
             logger.info(f"\n{'='*70}")
             logger.info(f"Epoch {epoch + 1}/{self.config.num_epochs}")
             logger.info(f"{'='*70}")
             
             # Train
-            train_loss = self.train_epoch(train_loader)
+            train_loss = self.train_epoch(train_loader, val_loader)
             
             # Validate
             val_loss = self.validate(val_loader)
             
-            # Save checkpoint if validation loss improved
+            # Save checkpoint if validation loss improved (epoch-based backup)
             if val_loss < self.best_val_loss:
                 self.best_val_loss = val_loss
-                self.save_checkpoint(tag="best")
+                self.save_checkpoint_rotated(tag="best", step=self.global_step)
             
             logger.info(
                 f"Epoch {epoch + 1} - "

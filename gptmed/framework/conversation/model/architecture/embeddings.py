@@ -8,6 +8,7 @@ Combines both into a single embedding layer.
 import torch
 import torch.nn as nn
 import math
+from .quantized_layers import QuantizedEmbedding
 
 
 class PositionalEncoding(nn.Module):
@@ -84,8 +85,8 @@ class TokenPositionalEmbedding(nn.Module):
         """
         super().__init__()
         
-        # Token embedding layer
-        self.token_embedding = nn.Embedding(vocab_size, d_model)
+        # Token embedding layer (quantized to int8 for memory efficiency)
+        self.token_embedding = QuantizedEmbedding(vocab_size, d_model)
         
         # Positional encoding
         self.positional_encoding = PositionalEncoding(d_model, max_seq_len, dropout)

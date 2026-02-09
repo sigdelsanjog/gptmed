@@ -1,0 +1,9 @@
+{
+  "total_unique_tokens": 27449,
+  "total_token_instances": 10023740,
+  "token_id_range": [
+    0,
+    50255
+  ],
+  "gpt2_vocab_enabled": true
+}

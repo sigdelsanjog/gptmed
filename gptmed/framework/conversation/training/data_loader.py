@@ -66,8 +66,8 @@ class TokenDataset(Dataset):
                         tokens = record['tokens']
                         
                         # Ensure all tokens are within valid range [0, vocab_size)
-                        # Clamp any out-of-range tokens to valid range
-                        vocab_size = 10000
+                        # Use actual vocab size from training config (50256 for GPT-2)
+                        vocab_size = 50256
                         tokens = [min(max(t, 0), vocab_size - 1) for t in tokens]
                         
                         # Count invalid tokens

@@ -12,16 +12,122 @@ from torch.cuda.amp import autocast, GradScaler
 import logging
 import time
 from pathlib import Path
-from typing import Tuple, Optional
+from typing import Tuple, Optional, Dict
 import json
+from datetime import datetime
 
 from ..model.architecture import ConversationLanguageModel
 from ..model.configs.model_config import ConversationModelConfig
 from .data_loader import get_data_loaders
-from ...logging_utils import setup_training_logger
+from ...logging_utils import setup_training_logger, get_framework_logs_dir
 
 
 logger = setup_training_logger(__name__, model_type="conversation")
+
+
+class MetricsTracker:
+    """Tracks training metrics and logs them to JSON for later visualization"""
+    
+    def __init__(self, model_type: str = "conversation"):
+        """
+        Initialize metrics tracker
+        
+        Args:
+            model_type: Type of model being trained
+        """
+        self.model_type = model_type
+        self.metrics = {
+            'timestamp': datetime.now().isoformat(),
+            'model_type': model_type,
+            'steps': [],
+            'epochs': []
+        }
+        
+        # Determine JSON log file path
+        logs_dir = get_framework_logs_dir()
+        self.json_log_file = logs_dir / f"{model_type}_training_metrics.jsonl"
+        
+        logger.info(f"Metrics will be saved to: {self.json_log_file}")
+    
+    def log_step(self, step: int, epoch: int, batch_idx: int, loss: float, 
+                 val_loss: Optional[float] = None, **kwargs):
+        """
+        Log training step metrics to JSON
+        
+        Args:
+            step: Global step number
+            epoch: Current epoch
+            batch_idx: Batch index within epoch
+            loss: Training loss
+            val_loss: Validation loss (if available)
+            **kwargs: Additional metrics to log
+        """
+        metric = {
+            'timestamp': datetime.now().isoformat(),
+            'global_step': step,
+            'epoch': epoch,
+            'batch': batch_idx,
+            'train_loss': loss,
+        }
+        
+        if val_loss is not None:
+            metric['val_loss'] = val_loss
+        
+        # Add any additional metrics
+        metric.update(kwargs)
+        
+        self.metrics['steps'].append(metric)
+        
+        # Append to JSON file (JSONL format for streaming)
+        with open(self.json_log_file, 'a') as f:
+            f.write(json.dumps(metric) + '\n')
+    
+    def log_epoch(self, epoch: int, train_loss: float, val_loss: float, 
+                  best_val_loss: float, epoch_time: float, **kwargs):
+        """
+        Log epoch-level metrics to JSON
+        
+        Args:
+            epoch: Epoch number
+            train_loss: Average training loss for epoch
+            val_loss: Validation loss for epoch
+            best_val_loss: Best validation loss so far
+            epoch_time: Time taken for epoch in seconds
+            **kwargs: Additional metrics to log
+        """
+        metric = {
+            'timestamp': datetime.now().isoformat(),
+            'epoch': epoch,
+            'train_loss': train_loss,
+            'val_loss': val_loss,
+            'best_val_loss': best_val_loss,
+            'epoch_time': epoch_time,
+        }
+        
+        # Add any additional metrics
+        metric.update(kwargs)
+        
+        self.metrics['epochs'].append(metric)
+        
+        # Append to JSON file
+        with open(self.json_log_file, 'a') as f:
+            f.write(json.dumps(metric) + '\n')
+    
+    def save_summary(self) -> Path:
+        """
+        Save a summary of all metrics to a JSON file for easy access
+        
+        Returns:
+            Path to summary file
+        """
+        logs_dir = get_framework_logs_dir()
+        summary_file = logs_dir / f"{self.model_type}_training_metrics_summary.json"
+        
+        with open(summary_file, 'w') as f:
+            json.dump(self.metrics, f, indent=2)
+        
+        logger.info(f"Metrics summary saved to: {summary_file}")
+        return summary_file
 
 
 class Trainer:
@@ -129,14 +235,18 @@ class Trainer:
         self.start_epoch = 0
         self.last_checkpoint_step = 0  # Track last checkpoint step
         self.checkpoint_history = {'latest': None, 'previous': None, 'best': None}  # Checkpoint tracking
+        
+        # Initialize metrics tracker for JSON logging
+        self.metrics_tracker = MetricsTracker(model_type="conversation")
     
-    def train_epoch(self, train_loader, val_loader) -> float:
+    def train_epoch(self, train_loader, val_loader, epoch: int = 0) -> float:
         """
         Train for one epoch
         
         Args:
             train_loader: Data loader for training
             val_loader: Data loader for validation
+            epoch: Current epoch number (0-indexed)
             
         Returns:
             Average training loss
@@ -219,23 +329,21 @@ class Trainer:
                         f"Epoch [{batch_idx}/{len(train_loader)}] "
                         f"Step [{self.global_step}] "
                     f"Loss: {avg_loss:.4f}"
-                )
-                
-                # Validate and save checkpoint every save_interval steps
-                if self.global_step % self.config.save_interval == 0 and self.global_step > self.last_checkpoint_step:
-                    logger.info(f"\n💾 Checkpoint interval reached (step {self.global_step})")
-                    # Perform validation
-                    intra_val_loss = self.validate(val_loader)
-                    self.last_checkpoint_step = self.global_step
+                    )
                     
-                    # Save checkpoint with rotation (latest, previous, best)
-                    if intra_val_loss < self.best_val_loss:
-                        # Found a better model
-                        self.best_val_loss = intra_val_loss
-                        self.save_checkpoint_rotated(tag="best", step=self.global_step)
-                    else:
-                        # Regular checkpoint
-                        self.save_checkpoint_rotated(tag="latest", step=self.global_step)
+                    # Log to JSON metrics
+                    self.metrics_tracker.log_step(
+                        step=self.global_step,
+                        epoch=epoch + 1,
+                        batch_idx=batch_idx,
+                        loss=avg_loss
+                    )
+                
+                # Save checkpoint every save_interval steps (without validation)
+                if self.global_step % self.config.save_interval == 0 and self.global_step > self.last_checkpoint_step:
+                    logger.info(f"\n💾 Checkpoint saved (step {self.global_step})")
+                    self.last_checkpoint_step = self.global_step
+                    self.save_checkpoint_rotated(tag="latest", step=self.global_step)
             
             except Exception as e:
                 logger.error(f"Error in batch {batch_idx}: {str(e)}", exc_info=True)
@@ -247,6 +355,22 @@ class Trainer:
         
         avg_loss = total_loss / num_batches
         logger.info(f"Epoch average loss: {avg_loss:.4f}")
+        
+        # Perform validation after epoch completes
+        logger.info("\n" + "="*50)
+        logger.info("🔍 EPOCH VALIDATION")
+        logger.info("="*50)
+        epoch_val_loss = self.validate(val_loader)
+        
+        # Save checkpoint with rotation based on validation loss
+        if epoch_val_loss < self.best_val_loss:
+            # Found a better model
+            self.best_val_loss = epoch_val_loss
+            logger.info(f"✨ New best validation loss: {epoch_val_loss:.4f}")
+            self.save_checkpoint_rotated(tag="best", step=self.global_step)
+        else:
+            # Regular checkpoint
+            self.save_checkpoint_rotated(tag="latest", step=self.global_step)
         
         return avg_loss
     
@@ -355,7 +479,14 @@ class Trainer:
         """
         checkpoint = torch.load(checkpoint_path, map_location=self.device)
         
-        self.model.load_state_dict(checkpoint['model_state'])
+        # Filter out causal_mask keys which are buffers that may be incompatible
+        model_state = checkpoint['model_state']
+        keys_to_remove = [k for k in model_state.keys() if 'causal_mask' in k]
+        for key in keys_to_remove:
+            del model_state[key]
+            logger.info(f"Removed incompatible key from checkpoint: {key}")
+        
+        self.model.load_state_dict(model_state, strict=False)
         self.optimizer.load_state_dict(checkpoint['optimizer_state'])
         
         # Load scheduler state if available
@@ -451,12 +582,13 @@ class Trainer:
         start_time = time.time()
         
         for epoch in range(self.start_epoch, self.config.num_epochs):
+            epoch_start = time.time()
             logger.info(f"\n{'='*70}")
             logger.info(f"Epoch {epoch + 1}/{self.config.num_epochs}")
             logger.info(f"{'='*70}")
             
             # Train
-            train_loss = self.train_epoch(train_loader, val_loader)
+            train_loss = self.train_epoch(train_loader, val_loader, epoch=epoch)
             
             # Validate
             val_loss = self.validate(val_loader)
@@ -466,17 +598,33 @@ class Trainer:
                 self.best_val_loss = val_loss
                 self.save_checkpoint_rotated(tag="best", step=self.global_step)
             
+            epoch_time = time.time() - epoch_start
+            
             logger.info(
                 f"Epoch {epoch + 1} - "
                 f"Train Loss: {train_loss:.4f}, "
                 f"Val Loss: {val_loss:.4f}, "
-                f"Best Val Loss: {self.best_val_loss:.4f}"
+                f"Best Val Loss: {self.best_val_loss:.4f}, "
+                f"Time: {epoch_time:.2f}s"
+            )
+            
+            # Log epoch metrics to JSON
+            self.metrics_tracker.log_epoch(
+                epoch=epoch + 1,
+                train_loss=train_loss,
+                val_loss=val_loss,
+                best_val_loss=self.best_val_loss,
+                epoch_time=epoch_time
             )
         
         total_time = time.time() - start_time
         logger.info(f"\nTraining completed in {total_time:.2f}s")
         logger.info(f"Best validation loss: {self.best_val_loss:.4f}")
         logger.info(f"Checkpoints saved in: {self.config.checkpoint_dir}")
+        
+        # Save metrics summary
+        summary_path = self.metrics_tracker.save_summary()
+        logger.info(f"✓ Training metrics saved to JSON for visualization")
 
 
 def main():

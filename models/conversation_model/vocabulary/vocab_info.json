@@ -1,0 +1,15 @@
+{
+  "method": "huggingface",
+  "model_name": "gpt2",
+  "num_records": 0,
+  "statistics": {
+    "vocab_size": 50257,
+    "unique_tokens": 50257,
+    "total_tokens": 0,
+    "min_frequency": 0,
+    "max_frequency": 0,
+    "avg_frequency": 0,
+    "coverage_90": 0
+  },
+  "build_date": "2026-02-06T01:17:06.450655"
+}

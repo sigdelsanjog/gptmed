@@ -1,0 +1,2729 @@
+{
+  "metadata": {
+    "tokenizer_method": "huggingface",
+    "tokenizer_model": "gpt2",
+    "timestamp": "2026-02-07 11:41:07"
+  },
+  "overall_statistics": {
+    "total_files": 387,
+    "successfully_processed": 384,
+    "failed": 3,
+    "total_tokens": 10023740,
+    "total_words": 4352441,
+    "total_characters": 32910031,
+    "average_tokens_per_file": 26103.49,
+    "average_words_per_file": 11334.48,
+    "average_characters_per_file": 85703.21
+  },
+  "per_file_summary": [
+    {
+      "filename": "1-s2.0-S240584402030270X-mainext.pdf",
+      "tokens": 13685,
+      "words": 8037,
+      "characters": 52160,
+      "status": "success"
+    },
+    {
+      "filename": "A Robust EEG Brain-Computer Interface Approach for Decoding\nHand and Foot Motor Imagery.pdf",
+      "tokens": 13402,
+      "words": 7203,
+      "characters": 46119,
+      "status": "success"
+    },
+    {
+      "filename": "13 - Advances in non-invasive EEG-based brain-computer interfaces_ Signal acquisition, processing, emerging approaches, and applications.pdf",
+      "tokens": 16768,
+      "words": 10938,
+      "characters": 76354,
+      "status": "success"
+    },
+    {
+      "filename": "A blockchain security module for brain-computer interface (BCI) with\nMultimedia Life Cycle Framework(MLCF).pdf",
+      "tokens": 19472,
+      "words": 11107,
+      "characters": 80427,
+      "status": "success"
+    },
+    {
+      "filename": "A survey of quantum computing hybrid applications withbrain-computer interface.pdf",
+      "tokens": 15407,
+      "words": 9350,
+      "characters": 61469,
+      "status": "success"
+    },
+    {
+      "filename": "3-s2.0-B9780323954396000223-main.pdf",
+      "tokens": 14377,
+      "words": 9103,
+      "characters": 59563,
+      "status": "success"
+    },
+    {
+      "filename": "A spatial–spectral and temporal dual prototype network for motor imagery brain–computer interface.pdf",
+      "tokens": 20021,
+      "words": 11217,
+      "characters": 74546,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-1---Advances-in-human-activity-recognition--Harness_2025_Brain-Compu.pdf",
+      "tokens": 22415,
+      "words": 11777,
+      "characters": 81183,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-12---Investigating-the-role-of-cortical-rhythms-in-m_2025_Brain-Comp.pdf",
+      "tokens": 7029,
+      "words": 4364,
+      "characters": 30445,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-10---Advancements-in-the-diagnosis-of-Alzheimer-_2025_Brain-Computer.pdf",
+      "tokens": 15855,
+      "words": 9687,
+      "characters": 62167,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-14---A-review-on-contemporary-brain-computer-in_2025_Brain-Computer-.pdf",
+      "tokens": 7073,
+      "words": 4847,
+      "characters": 31033,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-11---Alcoholism-identification-by-processing-the-EE_2025_Brain-Compu.pdf",
+      "tokens": 14876,
+      "words": 8560,
+      "characters": 55836,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-16---EEG-based-cognitive-fatigue-recognition-using_2025_Brain-Comput.pdf",
+      "tokens": 11678,
+      "words": 6908,
+      "characters": 46095,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-13---Stimulus-independent-noninvasive-BCI-based_2025_Brain-Computer-.pdf",
+      "tokens": 17990,
+      "words": 9961,
+      "characters": 67384,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-18---Beyond-brainwaves--Recommendations-for-integra_2025_Brain-Compu.pdf",
+      "tokens": 15988,
+      "words": 9864,
+      "characters": 68546,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-19---A-sociotechnical-systems--perspective-to-su_2025_Brain-Computer.pdf",
+      "tokens": 11165,
+      "words": 7328,
+      "characters": 49373,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-15---Noninvasive-brain-computer-interfaces-usin_2025_Brain-Computer-.pdf",
+      "tokens": 23640,
+      "words": 13450,
+      "characters": 91695,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-20---Assessing-systemic-benefit-and-risk-in-the_2025_Brain-Computer-.pdf",
+      "tokens": 9871,
+      "words": 6558,
+      "characters": 45861,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-2---Design-and-validation-of-a-hybrid-programmable-_2025_Brain-Compu.pdf",
+      "tokens": 9040,
+      "words": 4791,
+      "characters": 30106,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-17---Passive-brain-computer-interfaces-for-cognitiv_2025_Brain-Compu.pdf",
+      "tokens": 22911,
+      "words": 15031,
+      "characters": 103666,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-21---Recent-development-of-single-channel-EEG-based_2025_Brain-Compu.pdf",
+      "tokens": 19703,
+      "words": 11688,
+      "characters": 77483,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-5---A-study-of-the-relationship-of-wavelet-transfor_2025_Brain-Compu.pdf",
+      "tokens": 7249,
+      "words": 4175,
+      "characters": 26698,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-4---Automated-detection-of-brain-disease-using_2025_Brain-Computer-I.pdf",
+      "tokens": 14377,
+      "words": 9103,
+      "characters": 59563,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-8---A-comparison-of-deep-learning-methods-and-conven_2025_Brain-Comp.pdf",
+      "tokens": 6952,
+      "words": 4065,
+      "characters": 26237,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-3---FBSE-based-automated-classification-of-motor-_2025_Brain-Compute.pdf",
+      "tokens": 23656,
+      "words": 13102,
+      "characters": 86746,
+      "status": "success"
+    },
+    {
+      "filename": "Contributors_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 2903,
+      "words": 1299,
+      "characters": 10637,
+      "status": "success"
+    },
+    {
+      "filename": "Front-Matter_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 28,
+      "words": 15,
+      "characters": 98,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 487,
+      "words": 355,
+      "characters": 2421,
+      "status": "success"
+    },
+    {
+      "filename": "Front-matter_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 99,
+      "words": 52,
+      "characters": 414,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-6---BCIs-for-stroke-rehabilitation_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 13437,
+      "words": 7995,
+      "characters": 52889,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-9---Benchmarking-convolutional-neural-networks-on-_2025_Brain-Comput.pdf",
+      "tokens": 12594,
+      "words": 7750,
+      "characters": 48106,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-7---Decoding-imagined-speech-for-EEG-bas_2025_Brain-Computer-Interfa.pdf",
+      "tokens": 20823,
+      "words": 12555,
+      "characters": 81217,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 11831,
+      "words": 5970,
+      "characters": 44944,
+      "status": "success"
+    },
+    {
+      "filename": "Advances in brain-computer interface controlled functional electrical\nstimulation for upper limb recovery after stroke.pdf",
+      "tokens": 13855,
+      "words": 8653,
+      "characters": 61906,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-12---Investigating-the-role-of-cortical-rhythms-in-m_2025_Brain-Comp.pdf",
+      "tokens": 7029,
+      "words": 4364,
+      "characters": 30445,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-1---Advances-in-human-activity-recognition--Harness_2025_Brain-Compu.pdf",
+      "tokens": 22415,
+      "words": 11777,
+      "characters": 81183,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-10---Advancements-in-the-diagnosis-of-Alzheimer-_2025_Brain-Computer.pdf",
+      "tokens": 15855,
+      "words": 9687,
+      "characters": 62167,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-14---A-review-on-contemporary-brain-computer-in_2025_Brain-Computer-.pdf",
+      "tokens": 7073,
+      "words": 4847,
+      "characters": 31033,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-11---Alcoholism-identification-by-processing-the-EE_2025_Brain-Compu.pdf",
+      "tokens": 14876,
+      "words": 8560,
+      "characters": 55836,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-13---Stimulus-independent-noninvasive-BCI-based_2025_Brain-Computer-.pdf",
+      "tokens": 17990,
+      "words": 9961,
+      "characters": 67384,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-16---EEG-based-cognitive-fatigue-recognition-using_2025_Brain-Comput.pdf",
+      "tokens": 11678,
+      "words": 6908,
+      "characters": 46095,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-19---A-sociotechnical-systems--perspective-to-su_2025_Brain-Computer.pdf",
+      "tokens": 11165,
+      "words": 7328,
+      "characters": 49373,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-15---Noninvasive-brain-computer-interfaces-usin_2025_Brain-Computer-.pdf",
+      "tokens": 23640,
+      "words": 13450,
+      "characters": 91695,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-18---Beyond-brainwaves--Recommendations-for-integra_2025_Brain-Compu.pdf",
+      "tokens": 15988,
+      "words": 9864,
+      "characters": 68546,
+      "status": "success"
+    },
+    {
+      "filename": "2.Modeling Neural Circuits Made Simple with Python -- Robert Rosenbaum -- null, null, 2022 -- The MIT Press -- 9780262548083 -- dd09ce5187764cb68acd271cf75b32d9 -- Anna’s Archive.pdf",
+      "tokens": 56222,
+      "words": 32808,
+      "characters": 206778,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-20---Assessing-systemic-benefit-and-risk-in-the_2025_Brain-Computer-.pdf",
+      "tokens": 9871,
+      "words": 6558,
+      "characters": 45861,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-2---Design-and-validation-of-a-hybrid-programmable-_2025_Brain-Compu.pdf",
+      "tokens": 9040,
+      "words": 4791,
+      "characters": 30106,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-21---Recent-development-of-single-channel-EEG-based_2025_Brain-Compu.pdf",
+      "tokens": 19703,
+      "words": 11688,
+      "characters": 77483,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-17---Passive-brain-computer-interfaces-for-cognitiv_2025_Brain-Compu.pdf",
+      "tokens": 22911,
+      "words": 15031,
+      "characters": 103666,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-5---A-study-of-the-relationship-of-wavelet-transfor_2025_Brain-Compu.pdf",
+      "tokens": 7249,
+      "words": 4175,
+      "characters": 26698,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-3---FBSE-based-automated-classification-of-motor-_2025_Brain-Compute.pdf",
+      "tokens": 23656,
+      "words": 13102,
+      "characters": 86746,
+      "status": "success"
+    },
+    {
+      "filename": "Contributors_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 2903,
+      "words": 1299,
+      "characters": 10637,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-8---A-comparison-of-deep-learning-methods-and-conven_2025_Brain-Comp.pdf",
+      "tokens": 6952,
+      "words": 4065,
+      "characters": 26237,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-4---Automated-detection-of-brain-disease-using_2025_Brain-Computer-I.pdf",
+      "tokens": 14377,
+      "words": 9103,
+      "characters": 59563,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-9---Benchmarking-convolutional-neural-networks-on-_2025_Brain-Comput.pdf",
+      "tokens": 12594,
+      "words": 7750,
+      "characters": 48106,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 487,
+      "words": 355,
+      "characters": 2421,
+      "status": "success"
+    },
+    {
+      "filename": "Acknowledgmen_2025_Artificial-Intelligence-Applications-for-Brain-Computer--.pdf",
+      "tokens": 232,
+      "words": 134,
+      "characters": 981,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-6---BCIs-for-stroke-rehabilitation_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 13437,
+      "words": 7995,
+      "characters": 52889,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 11831,
+      "words": 5970,
+      "characters": 44944,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-7---Decoding-imagined-speech-for-EEG-bas_2025_Brain-Computer-Interfa.pdf",
+      "tokens": 20823,
+      "words": 12555,
+      "characters": 81217,
+      "status": "success"
+    },
+    {
+      "filename": "Analyzing eyewitness recognition\naccuracy using event-related potential\nand eye-tracking analysis: an\nexperimental investigation.pdf",
+      "tokens": 11836,
+      "words": 7650,
+      "characters": 49851,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-13---Analyzing-eyewitness-recognition-ac_2025_Artificial-Intelligenc.pdf",
+      "tokens": 11836,
+      "words": 7650,
+      "characters": 49851,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-1---Introduction-to-brain-comput_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 18404,
+      "words": 11515,
+      "characters": 76584,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-10---Electroencephalography-based-emoti_2025_Artificial-Intelligence.pdf",
+      "tokens": 17234,
+      "words": 11050,
+      "characters": 75643,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-11---Brain-computer-interfac_2025_Artificial-Intelligence-Applicatio.pdf",
+      "tokens": 16275,
+      "words": 10690,
+      "characters": 70107,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-12---A-case-study-on-artifical-intel_2025_Artificial-Intelligence-Ap.pdf",
+      "tokens": 13679,
+      "words": 9197,
+      "characters": 60705,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-15---Challenges-and-future-directio_2025_Artificial-Intelligence-App.pdf",
+      "tokens": 14982,
+      "words": 10052,
+      "characters": 70436,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-3---Emotional-state-monitoring-a_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 12811,
+      "words": 8444,
+      "characters": 55964,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-2---Preprocessing-and-feature-extraction-techniques_2025_Artificial-.pdf",
+      "tokens": 19204,
+      "words": 11450,
+      "characters": 78652,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-14---Ambient-assisted-living-through-_2025_Artificial-Intelligence-A.pdf",
+      "tokens": 21679,
+      "words": 14259,
+      "characters": 100013,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-4---Hand-kinematics-and-decoding-hindli_2025_Artificial-Intelligence.pdf",
+      "tokens": 13179,
+      "words": 8900,
+      "characters": 60036,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-5---Closed-loop-brain-computer-i_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 12466,
+      "words": 8556,
+      "characters": 57246,
+      "status": "success"
+    },
+    {
+      "filename": "Contents_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Inter.pdf",
+      "tokens": 1698,
+      "words": 987,
+      "characters": 7393,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-6---Classification-of-motor-imagery_2025_Artificial-Intelligence-App.pdf",
+      "tokens": 18899,
+      "words": 11653,
+      "characters": 77796,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Inte.pdf",
+      "tokens": 503,
+      "words": 380,
+      "characters": 2591,
+      "status": "success"
+    },
+    {
+      "filename": "List-of-contribut_2025_Artificial-Intelligence-Applications-for-Brain-Comput.pdf",
+      "tokens": 1297,
+      "words": 627,
+      "characters": 4716,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-7---The-application-of-brain-computer-_2025_Artificial-Intelligence-.pdf",
+      "tokens": 19826,
+      "words": 12557,
+      "characters": 84490,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-8---Brain-computer-interfaces-an_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 9580,
+      "words": 6037,
+      "characters": 42359,
+      "status": "success"
+    },
+    {
+      "filename": "Series-prefac_2025_Artificial-Intelligence-Applications-for-Brain-Computer--.pdf",
+      "tokens": 710,
+      "words": 494,
+      "characters": 3581,
+      "status": "success"
+    },
+    {
+      "filename": "Acknowledgmen_2025_Artificial-Intelligence-Applications-for-Brain-Computer--.pdf",
+      "tokens": 232,
+      "words": 134,
+      "characters": 981,
+      "status": "success"
+    },
+    {
+      "filename": "Preface_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Interf.pdf",
+      "tokens": 2947,
+      "words": 1883,
+      "characters": 14643,
+      "status": "success"
+    },
+    {
+      "filename": "Title-page_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Int.pdf",
+      "tokens": 221,
+      "words": 107,
+      "characters": 899,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Interfac.pdf",
+      "tokens": 13961,
+      "words": 6579,
+      "characters": 51781,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-12---REMOVED--A-case-study-on-artific_2025_Artificial-Intelligence-A.pdf",
+      "tokens": 304,
+      "words": 175,
+      "characters": 1296,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-9---Prospects-and-challenges-in-_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 16366,
+      "words": 11078,
+      "characters": 76770,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-10---Electroencephalography-based-emoti_2025_Artificial-Intelligence.pdf",
+      "tokens": 17234,
+      "words": 11050,
+      "characters": 75643,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-1---Introduction-to-brain-comput_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 18404,
+      "words": 11515,
+      "characters": 76584,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-11---Brain-computer-interfac_2025_Artificial-Intelligence-Applicatio.pdf",
+      "tokens": 16275,
+      "words": 10690,
+      "characters": 70107,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-13---Analyzing-eyewitness-recognition-ac_2025_Artificial-Intelligenc.pdf",
+      "tokens": 11836,
+      "words": 7650,
+      "characters": 49851,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-15---Challenges-and-future-directio_2025_Artificial-Intelligence-App.pdf",
+      "tokens": 14982,
+      "words": 10052,
+      "characters": 70436,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-3---Emotional-state-monitoring-a_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 12811,
+      "words": 8444,
+      "characters": 55964,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-14---Ambient-assisted-living-through-_2025_Artificial-Intelligence-A.pdf",
+      "tokens": 21679,
+      "words": 14259,
+      "characters": 100013,
+      "status": "success"
+    },
+    {
+      "filename": "1.Theoretical Neuroscience _ Computational and Mathematical -- Peter Dayan, L_ F_ Abbott, Tomaso A_ Poggio, Terrence J_ -- MIT Press, Cambridge, Mass, -- 9780262041997 -- 8470b15b978ba7b17ffcee27577045ad -- Anna’s Archive.pdf",
+      "tokens": 156185,
+      "words": 90522,
+      "characters": 611846,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-2---Preprocessing-and-feature-extraction-techniques_2025_Artificial-.pdf",
+      "tokens": 19204,
+      "words": 11450,
+      "characters": 78652,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-4---Hand-kinematics-and-decoding-hindli_2025_Artificial-Intelligence.pdf",
+      "tokens": 13179,
+      "words": 8900,
+      "characters": 60036,
+      "status": "success"
+    },
+    {
+      "filename": "Contents_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Inter.pdf",
+      "tokens": 1652,
+      "words": 954,
+      "characters": 7193,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-5---Closed-loop-brain-computer-i_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 12466,
+      "words": 8556,
+      "characters": 57246,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Inte.pdf",
+      "tokens": 503,
+      "words": 380,
+      "characters": 2591,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-8---Brain-computer-interfaces-an_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 9580,
+      "words": 6037,
+      "characters": 42359,
+      "status": "success"
+    },
+    {
+      "filename": "List-of-contribut_2025_Artificial-Intelligence-Applications-for-Brain-Comput.pdf",
+      "tokens": 1297,
+      "words": 627,
+      "characters": 4716,
+      "status": "success"
+    },
+    {
+      "filename": "Series-prefac_2025_Artificial-Intelligence-Applications-for-Brain-Computer--.pdf",
+      "tokens": 710,
+      "words": 494,
+      "characters": 3581,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-6---Classification-of-motor-imagery_2025_Artificial-Intelligence-App.pdf",
+      "tokens": 18899,
+      "words": 11653,
+      "characters": 77796,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-7---The-application-of-brain-computer-_2025_Artificial-Intelligence-.pdf",
+      "tokens": 19826,
+      "words": 12557,
+      "characters": 84490,
+      "status": "success"
+    },
+    {
+      "filename": "Title-page_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Int.pdf",
+      "tokens": 221,
+      "words": 107,
+      "characters": 899,
+      "status": "success"
+    },
+    {
+      "filename": "Preface_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Interf.pdf",
+      "tokens": 2947,
+      "words": 1883,
+      "characters": 14643,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2025_Artificial-Intelligence-Applications-for-Brain-Computer--Interfac.pdf",
+      "tokens": 13961,
+      "words": 6579,
+      "characters": 51781,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-9---Prospects-and-challenges-in-_2025_Artificial-Intelligence-Applic.pdf",
+      "tokens": 16366,
+      "words": 11078,
+      "characters": 76770,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-10---Advancements-in-the-diagnosis-of-Alzheimer-_2025_Brain-Computer.pdf",
+      "tokens": 15855,
+      "words": 9687,
+      "characters": 62167,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-1---Advances-in-human-activity-recognition--Harness_2025_Brain-Compu.pdf",
+      "tokens": 22415,
+      "words": 11777,
+      "characters": 81183,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-12---Investigating-the-role-of-cortical-rhythms-in-m_2025_Brain-Comp.pdf",
+      "tokens": 7029,
+      "words": 4364,
+      "characters": 30445,
+      "status": "success"
+    },
+    {
+      "filename": "Augmenting brain-computer interfaces with ART: An artifact removal\ntransformer for reconstructing multichannel EEG signals.pdf",
+      "tokens": 23651,
+      "words": 13862,
+      "characters": 94512,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-14---A-review-on-contemporary-brain-computer-in_2025_Brain-Computer-.pdf",
+      "tokens": 7073,
+      "words": 4847,
+      "characters": 31033,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-11---Alcoholism-identification-by-processing-the-EE_2025_Brain-Compu.pdf",
+      "tokens": 14876,
+      "words": 8560,
+      "characters": 55836,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-16---EEG-based-cognitive-fatigue-recognition-using_2025_Brain-Comput.pdf",
+      "tokens": 11678,
+      "words": 6908,
+      "characters": 46095,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-13---Stimulus-independent-noninvasive-BCI-based_2025_Brain-Computer-.pdf",
+      "tokens": 17990,
+      "words": 9961,
+      "characters": 67384,
+      "status": "success"
+    },
+    {
+      "filename": "Automated EEG signal processing: A comprehensive investigation into\npreprocessing techniques and sub-band extraction for enhanced\nbrain-computer interface applications.pdf",
+      "tokens": 27990,
+      "words": 16523,
+      "characters": 115904,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-15---Noninvasive-brain-computer-interfaces-usin_2025_Brain-Computer-.pdf",
+      "tokens": 23640,
+      "words": 13450,
+      "characters": 91695,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-19---A-sociotechnical-systems--perspective-to-su_2025_Brain-Computer.pdf",
+      "tokens": 11165,
+      "words": 7328,
+      "characters": 49373,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-20---Assessing-systemic-benefit-and-risk-in-the_2025_Brain-Computer-.pdf",
+      "tokens": 9871,
+      "words": 6558,
+      "characters": 45861,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-18---Beyond-brainwaves--Recommendations-for-integra_2025_Brain-Compu.pdf",
+      "tokens": 15988,
+      "words": 9864,
+      "characters": 68546,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-2---Design-and-validation-of-a-hybrid-programmable-_2025_Brain-Compu.pdf",
+      "tokens": 9040,
+      "words": 4791,
+      "characters": 30106,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-21---Recent-development-of-single-channel-EEG-based_2025_Brain-Compu.pdf",
+      "tokens": 19703,
+      "words": 11688,
+      "characters": 77483,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-5---A-study-of-the-relationship-of-wavelet-transfor_2025_Brain-Compu.pdf",
+      "tokens": 7249,
+      "words": 4175,
+      "characters": 26698,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-17---Passive-brain-computer-interfaces-for-cognitiv_2025_Brain-Compu.pdf",
+      "tokens": 22911,
+      "words": 15031,
+      "characters": 103666,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-8---A-comparison-of-deep-learning-methods-and-conven_2025_Brain-Comp.pdf",
+      "tokens": 6952,
+      "words": 4065,
+      "characters": 26237,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-3---FBSE-based-automated-classification-of-motor-_2025_Brain-Compute.pdf",
+      "tokens": 23656,
+      "words": 13102,
+      "characters": 86746,
+      "status": "success"
+    },
+    {
+      "filename": "Contributors_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 2903,
+      "words": 1299,
+      "characters": 10637,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-4---Automated-detection-of-brain-disease-using_2025_Brain-Computer-I.pdf",
+      "tokens": 14377,
+      "words": 9103,
+      "characters": 59563,
+      "status": "success"
+    },
+    {
+      "filename": "Front-matter_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 99,
+      "words": 52,
+      "characters": 414,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 487,
+      "words": 355,
+      "characters": 2421,
+      "status": "success"
+    },
+    {
+      "filename": "Front-Matter_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 28,
+      "words": 15,
+      "characters": 98,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-6---BCIs-for-stroke-rehabilitation_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 13437,
+      "words": 7995,
+      "characters": 52889,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-9---Benchmarking-convolutional-neural-networks-on-_2025_Brain-Comput.pdf",
+      "tokens": 12594,
+      "words": 7750,
+      "characters": 48106,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2025_Brain-Computer-Interfaces.pdf",
+      "tokens": 11831,
+      "words": 5970,
+      "characters": 44944,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-7---Decoding-imagined-speech-for-EEG-bas_2025_Brain-Computer-Interfa.pdf",
+      "tokens": 20823,
+      "words": 12555,
+      "characters": 81217,
+      "status": "success"
+    },
+    {
+      "filename": "1---Multiclass-sleep-stage-classification-using-_2022_Artificial-Intelligenc.pdf",
+      "tokens": 15334,
+      "words": 8700,
+      "characters": 57116,
+      "status": "success"
+    },
+    {
+      "filename": "10---Classification-of-mental-states-from-rationa_2022_Artificial-Intelligen.pdf",
+      "tokens": 11624,
+      "words": 6788,
+      "characters": 44594,
+      "status": "success"
+    },
+    {
+      "filename": "11---A-novel-metaheuristic-optimization-method-for-ro_2022_Artificial-Intell.pdf",
+      "tokens": 12174,
+      "words": 7832,
+      "characters": 50636,
+      "status": "success"
+    },
+    {
+      "filename": "15---Measure-the-superior-functionality-of-ma_2022_Artificial-Intelligence-B.pdf",
+      "tokens": 8149,
+      "words": 4746,
+      "characters": 31646,
+      "status": "success"
+    },
+    {
+      "filename": "12---Variational-mode-decomposition-based-f_2022_Artificial-Intelligence-Bas.pdf",
+      "tokens": 14080,
+      "words": 6516,
+      "characters": 43669,
+      "status": "success"
+    },
+    {
+      "filename": "13---An-insight-into-the-hardware-and-software-aspects-o_2022_Artificial-Int.pdf",
+      "tokens": 22931,
+      "words": 12067,
+      "characters": 78829,
+      "status": "success"
+    },
+    {
+      "filename": "3---A-new-approach-to-feature-extracti_2022_Artificial-Intelligence-Based-Br.pdf",
+      "tokens": 12005,
+      "words": 7689,
+      "characters": 49068,
+      "status": "success"
+    },
+    {
+      "filename": "14---Deep-autoencoder-based-automated-bra_2022_Artificial-Intelligence-Based.pdf",
+      "tokens": 22180,
+      "words": 12826,
+      "characters": 84100,
+      "status": "success"
+    },
+    {
+      "filename": "6---Bi-LSTM-deep-CNN-for-schizophrenia-detec_2022_Artificial-Intelligence-Ba.pdf",
+      "tokens": 8693,
+      "words": 4392,
+      "characters": 30129,
+      "status": "success"
+    },
+    {
+      "filename": "4---Evaluation-of-power-spectral-and-machine-le_2022_Artificial-Intelligence.pdf",
+      "tokens": 12093,
+      "words": 7151,
+      "characters": 46843,
+      "status": "success"
+    },
+    {
+      "filename": "8---Customized-deep-learning-algorithm-for-dr_2022_Artificial-Intelligence-B.pdf",
+      "tokens": 6543,
+      "words": 4179,
+      "characters": 27185,
+      "status": "success"
+    },
+    {
+      "filename": "5---Concept-of-AI-for-acquisition-and-mode_2022_Artificial-Intelligence-Base.pdf",
+      "tokens": 15174,
+      "words": 10575,
+      "characters": 68845,
+      "status": "success"
+    },
+    {
+      "filename": "Contributors_2022_Artificial-Intelligence-Based-Brain-Computer-Interface.pdf",
+      "tokens": 1150,
+      "words": 544,
+      "characters": 4611,
+      "status": "success"
+    },
+    {
+      "filename": "Front-Matter_2022_Artificial-Intelligence-Based-Brain-Computer-Interface.pdf",
+      "tokens": 67,
+      "words": 32,
+      "characters": 303,
+      "status": "success"
+    },
+    {
+      "filename": "2---A-comprehensive-review-of-the-movement-imagin_2022_Artificial-Intelligen.pdf",
+      "tokens": 44968,
+      "words": 20226,
+      "characters": 138561,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2022_Artificial-Intelligence-Based-Brain-Computer-Interface.pdf",
+      "tokens": 4721,
+      "words": 2357,
+      "characters": 18135,
+      "status": "success"
+    },
+    {
+      "filename": "9---EEG-based-deep-learning-neural-ne_2022_Artificial-Intelligence-Based-Bra.pdf",
+      "tokens": 7575,
+      "words": 4291,
+      "characters": 28737,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2022_Artificial-Intelligence-Based-Brain-Computer-Interface.pdf",
+      "tokens": 494,
+      "words": 352,
+      "characters": 2445,
+      "status": "success"
+    },
+    {
+      "filename": "7---Detection-of-epileptic-seizure-dis_2022_Artificial-Intelligence-Based-Br.pdf",
+      "tokens": 21023,
+      "words": 12872,
+      "characters": 86505,
+      "status": "success"
+    },
+    {
+      "filename": "Brain-Computer Interface (BCI) Resources.pdf",
+      "tokens": 2220,
+      "words": 1310,
+      "characters": 9431,
+      "status": "success"
+    },
+    {
+      "filename": "BrainComputer_Interfaces_for_Human_Augmentation.pdf",
+      "tokens": 57958,
+      "words": 35105,
+      "characters": 227364,
+      "status": "success"
+    },
+    {
+      "filename": "Brain–Computer Interfaces: Something New under the Sun.pdf",
+      "tokens": 11270,
+      "words": 7816,
+      "characters": 51030,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-1---Human-brain-function-and-brain-compu_2020_Handbook-of-Clinical-N.pdf",
+      "tokens": 14645,
+      "words": 9012,
+      "characters": 61083,
+      "status": "success"
+    },
+    {
+      "filename": "Brain_Computer_Interfaces_and_Emotional_Involvement_Theory_Research_and_Applications.pdf",
+      "tokens": 55277,
+      "words": 32865,
+      "characters": 220202,
+      "status": "success"
+    },
+    {
+      "filename": "Brain Computer Interfaces 1 - 2016 - Clerc.pdf",
+      "tokens": 145606,
+      "words": 93316,
+      "characters": 601087,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-10---Video-games-as-rich-environments-to-f_2020_Handbook-of-Clinical.pdf",
+      "tokens": 23490,
+      "words": 14744,
+      "characters": 100159,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-11---Brain-computer-interfaces-for-consciousness-_2020_Handbook-of-C.pdf",
+      "tokens": 17954,
+      "words": 11090,
+      "characters": 74023,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-12---Smart-neuromodulation-in-movement_2020_Handbook-of-Clinical-Neu.pdf",
+      "tokens": 9306,
+      "words": 5767,
+      "characters": 40152,
+      "status": "success"
+    },
+    {
+      "filename": "Brain Computer Interfaces 2 - 2016 - Clerc.pdf",
+      "tokens": 145072,
+      "words": 98861,
+      "characters": 628608,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-13---Bidirectional-brain-computer-int_2020_Handbook-of-Clinical-Neur.pdf",
+      "tokens": 21794,
+      "words": 13586,
+      "characters": 91106,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-15---Monitoring-performance-of-professional_2020_Handbook-of-Clinica.pdf",
+      "tokens": 7979,
+      "words": 4823,
+      "characters": 33364,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-14---Brain-computer-interfaces-and-virtual-r_2020_Handbook-of-Clinic.pdf",
+      "tokens": 17994,
+      "words": 11326,
+      "characters": 74274,
+      "status": "success"
+    },
+    {
+      "filename": "An Introductory Course in Computational Neuroscience -- Paul Miller, Terrence J_ Sejnowski, Tomaso A_ Poggio -- Computational neuroscience, Cambridge -- 9780262038256 -- 0078e9c0265f219d5abffcaf8.pdf",
+      "tokens": 166088,
+      "words": 123400,
+      "characters": 758335,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-17---Brain-computer-interfaces-for-basi_2020_Handbook-of-Clinical-Ne.pdf",
+      "tokens": 17750,
+      "words": 11845,
+      "characters": 77191,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-18---Electroencephalography_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 16356,
+      "words": 9700,
+      "characters": 65277,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-2---Brain-computer-interfaces--Definitio_2020_Handbook-of-Clinical-N.pdf",
+      "tokens": 10245,
+      "words": 6487,
+      "characters": 44046,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-16---Self-health-monitoring-and-wearable-_2020_Handbook-of-Clinical-.pdf",
+      "tokens": 29725,
+      "words": 17176,
+      "characters": 118904,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-20---Local-field-potentials-for-BCI-c_2020_Handbook-of-Clinical-Neur.pdf",
+      "tokens": 7250,
+      "words": 4700,
+      "characters": 30722,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-19---iEEG--Dura-lining-electrodes_2020_Handbook-of-Clinical-Neurolog.pdf",
+      "tokens": 14669,
+      "words": 9149,
+      "characters": 60548,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-24---Ethics-and-the-emergence-of-brain-com_2020_Handbook-of-Clinical.pdf",
+      "tokens": 12737,
+      "words": 8456,
+      "characters": 56474,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-21---Real-time-fMRI-for-brain-computer-_2020_Handbook-of-Clinical-Ne.pdf",
+      "tokens": 16110,
+      "words": 9691,
+      "characters": 68063,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-23---General-principles-of-machine-learning-_2020_Handbook-of-Clinic.pdf",
+      "tokens": 19670,
+      "words": 11604,
+      "characters": 77906,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-22---Merging-brain-computer-interface-and-functio_2020_Handbook-of-C.pdf",
+      "tokens": 6092,
+      "words": 3776,
+      "characters": 25785,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-25---Industrial-perspectives-on-brain-comp_2020_Handbook-of-Clinical.pdf",
+      "tokens": 8755,
+      "words": 5705,
+      "characters": 40409,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-3---Stroke-and-potential-benefits-of-brai_2020_Handbook-of-Clinical-.pdf",
+      "tokens": 9287,
+      "words": 5858,
+      "characters": 40841,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-4---Brain-computer-interfaces-for-people-wit_2020_Handbook-of-Clinic.pdf",
+      "tokens": 6643,
+      "words": 4027,
+      "characters": 26048,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-26---Hearing-the-needs-of-clinical-u_2020_Handbook-of-Clinical-Neuro.pdf",
+      "tokens": 16583,
+      "words": 10285,
+      "characters": 68919,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-5---Brain-damage-by-trauma_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 12036,
+      "words": 7643,
+      "characters": 52790,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-6---Spinal-cord-lesions_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 16276,
+      "words": 10050,
+      "characters": 66364,
+      "status": "success"
+    },
+    {
+      "filename": "Contributors_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 1920,
+      "words": 847,
+      "characters": 7200,
+      "status": "success"
+    },
+    {
+      "filename": "Brain‐Computer Interface - 2023 - Sumithra.pdf",
+      "tokens": 49333,
+      "words": 33242,
+      "characters": 219510,
+      "status": "success"
+    },
+    {
+      "filename": "Foreword_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 1085,
+      "words": 827,
+      "characters": 5433,
+      "status": "success"
+    },
+    {
+      "filename": "Copyright_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 579,
+      "words": 413,
+      "characters": 2897,
+      "status": "success"
+    },
+    {
+      "filename": "Handbook-of-Clinical-Neurology-3rd-Series_2020_Handbook-of-Clinical-Neurolog.pdf",
+      "tokens": 1600,
+      "words": 621,
+      "characters": 4336,
+      "status": "success"
+    },
+    {
+      "filename": "Preface_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 1662,
+      "words": 1292,
+      "characters": 8861,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-8---Applications-of-brain-computer-interfaces-_2020_Handbook-of-Clin.pdf",
+      "tokens": 15158,
+      "words": 8673,
+      "characters": 58945,
+      "status": "success"
+    },
+    {
+      "filename": "Series-Page_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 32,
+      "words": 17,
+      "characters": 111,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-7---Brain-computer-interfaces-for-communicationa-_2020_Handbook-of-C.pdf",
+      "tokens": 22520,
+      "words": 13606,
+      "characters": 91282,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 10.pdf",
+      "tokens": 1875,
+      "words": 1304,
+      "characters": 8431,
+      "status": "success"
+    },
+    {
+      "filename": "Index_2020_Handbook-of-Clinical-Neurology.pdf",
+      "tokens": 6228,
+      "words": 3565,
+      "characters": 26371,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 1.pdf",
+      "tokens": 694,
+      "words": 451,
+      "characters": 2964,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 2.pdf",
+      "tokens": 307,
+      "words": 218,
+      "characters": 1376,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 3.pdf",
+      "tokens": 573,
+      "words": 430,
+      "characters": 2735,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 5.pdf",
+      "tokens": 717,
+      "words": 539,
+      "characters": 3585,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 4.pdf",
+      "tokens": 581,
+      "words": 436,
+      "characters": 2862,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 13.pdf",
+      "tokens": 2411,
+      "words": 1285,
+      "characters": 8302,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 6.pdf",
+      "tokens": 1857,
+      "words": 1435,
+      "characters": 9379,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 8.pdf",
+      "tokens": 2597,
+      "words": 2044,
+      "characters": 12970,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 7.pdf",
+      "tokens": 3642,
+      "words": 2810,
+      "characters": 18205,
+      "status": "success"
+    },
+    {
+      "filename": "CHapter 9.pdf",
+      "tokens": 4285,
+      "words": 3330,
+      "characters": 20990,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter-9---Brain-computer-interfaces-in-neurologi_2020_Handbook-of-Clinical.pdf",
+      "tokens": 20603,
+      "words": 11565,
+      "characters": 80350,
+      "status": "success"
+    },
+    {
+      "filename": "Wearable_BrainComputer_Interfaces_Based_on_Steady-State_Visually_Evoked_Potentials_and_Augmented_Reality_A_Review.pdf",
+      "tokens": 20025,
+      "words": 12147,
+      "characters": 79562,
+      "status": "success"
+    },
+    {
+      "filename": "Brain Regions by Function.pdf",
+      "tokens": 961,
+      "words": 479,
+      "characters": 3782,
+      "status": "success"
+    },
+    {
+      "filename": "Bonicalzi-Actions and Intentions-2020.pdf",
+      "tokens": 15354,
+      "words": 10825,
+      "characters": 69085,
+      "status": "success"
+    },
+    {
+      "filename": "Challenges and Suggestions of Ethical Review on Clinical\nResearch Involving Brain-Computer Interfaces.pdf",
+      "tokens": 9786,
+      "words": 6158,
+      "characters": 44310,
+      "status": "success"
+    },
+    {
+      "filename": "NeuronalInterfaceSystems-2019.pdf",
+      "tokens": 37373,
+      "words": 26096,
+      "characters": 166149,
+      "status": "success"
+    },
+    {
+      "filename": "BCI Wikipedia.pdf",
+      "tokens": 38624,
+      "words": 17120,
+      "characters": 131451,
+      "status": "success"
+    },
+    {
+      "filename": "BINAURAL_BEATS_BRAIN_WAVE_ENTRAINMENT_AND_THE_HEMI.pdf",
+      "tokens": 22208,
+      "words": 15861,
+      "characters": 98545,
+      "status": "success"
+    },
+    {
+      "filename": "Challenges and future directions in brain computer interface research for exoskeletons usage.pdf",
+      "tokens": 14982,
+      "words": 10052,
+      "characters": 70436,
+      "status": "success"
+    },
+    {
+      "filename": "Chapter 11 - Brain–computer interfaces for security and authentication.pdf",
+      "tokens": 16275,
+      "words": 10690,
+      "characters": 70107,
+      "status": "success"
+    },
+    {
+      "filename": "Data Analytics in Steady-State Visual Evoked.pdf",
+      "tokens": 24484,
+      "words": 14272,
+      "characters": 96059,
+      "status": "success"
+    },
+    {
+      "filename": "Brown-RestlessArchitectureSyndrome.pdf",
+      "tokens": 19406,
+      "words": 14020,
+      "characters": 92022,
+      "status": "success"
+    },
+    {
+      "filename": "Design-of-Tri-channel-Active-Electrode-EEG-Device-for-Classification-of-Motor-Imagery-Brainwaves.pdf",
+      "tokens": 9053,
+      "words": 5530,
+      "characters": 34872,
+      "status": "success"
+    },
+    {
+      "filename": "Computational Neuroscience.pdf",
+      "tokens": 47690,
+      "words": 27159,
+      "characters": 173018,
+      "status": "success"
+    },
+    {
+      "filename": "Decoding memory with explainable AI_ A large-scale EEG-based machine learning study of encoding vs. retrieval.pdf",
+      "tokens": 18492,
+      "words": 10235,
+      "characters": 70755,
+      "status": "success"
+    },
+    {
+      "filename": "Eighty-six billion and counting: do we know\nthe number of neurons in the human brain?.pdf",
+      "tokens": 4159,
+      "words": 3055,
+      "characters": 17789,
+      "status": "success"
+    },
+    {
+      "filename": "Developing_Next-Generation_Brain_Sensing_TechnologiesA_Review.pdf",
+      "tokens": 22818,
+      "words": 13297,
+      "characters": 89585,
+      "status": "success"
+    },
+    {
+      "filename": "Disruptions of Hierarchical Cortical Organization\nin Early Psychosis and Schizophrenia.pdf",
+      "tokens": 14015,
+      "words": 8154,
+      "characters": 58524,
+      "status": "success"
+    },
+    {
+      "filename": "Efficient MAC Protocols for Brain Computer Interface Applications.pdf",
+      "tokens": 11920,
+      "words": 7670,
+      "characters": 49718,
+      "status": "success"
+    },
+    {
+      "filename": "Encyclopedia of Neuroscience Rybak and Smith 2009.pdf",
+      "tokens": 7776,
+      "words": 5100,
+      "characters": 35376,
+      "status": "success"
+    },
+    {
+      "filename": "Electroencephalography (EEG) Technology\nApplications and Available Devices.pdf",
+      "tokens": 17332,
+      "words": 9783,
+      "characters": 64583,
+      "status": "success"
+    },
+    {
+      "filename": "Electroencephalogramdiagnostictool.pdf",
+      "tokens": 13793,
+      "words": 9759,
+      "characters": 60808,
+      "status": "success"
+    },
+    {
+      "filename": "Equal Numbers of Neuronal and Nonneuronal Cells Make\nthe Human Brain an Isometrically Scaled-Up Primate\nBrain.pdf",
+      "tokens": 10433,
+      "words": 6131,
+      "characters": 40255,
+      "status": "success"
+    },
+    {
+      "filename": "Enhancing security in brain–computer interface applications with deep\nlearning: Electroencephalogram-based user identification.pdf",
+      "tokens": 14343,
+      "words": 9458,
+      "characters": 63602,
+      "status": "success"
+    },
+    {
+      "filename": "Signal_Processing_Using_Noninvasive_Physiological_Sensors.pdf",
+      "tokens": 101057,
+      "words": 56086,
+      "characters": 372951,
+      "status": "success"
+    },
+    {
+      "filename": "Harmonizing_AI_governance_regulations_and_neuroinf.pdf",
+      "tokens": 15111,
+      "words": 5549,
+      "characters": 49711,
+      "status": "success"
+    },
+    {
+      "filename": "Just-ControversialEncountersThird-2025.pdf",
+      "tokens": 14869,
+      "words": 11264,
+      "characters": 69133,
+      "status": "success"
+    },
+    {
+      "filename": "McLoughlin-BrainMachineInterfaces-2016.pdf",
+      "tokens": 4791,
+      "words": 3530,
+      "characters": 21995,
+      "status": "success"
+    },
+    {
+      "filename": "Mavinkurve-NewTechnologiesChallenge-2024.pdf",
+      "tokens": 8067,
+      "words": 5295,
+      "characters": 36524,
+      "status": "success"
+    },
+    {
+      "filename": "How to build a brain–computer interface from beginning to end.pdf",
+      "tokens": 32520,
+      "words": 20762,
+      "characters": 137649,
+      "status": "success"
+    },
+    {
+      "filename": "Mele-FreeNeuroscience-2020.pdf",
+      "tokens": 9235,
+      "words": 6794,
+      "characters": 39385,
+      "status": "success"
+    },
+    {
+      "filename": "Neuroinformatics: From Bioinformatics to Databasing the Brain.pdf",
+      "tokens": 8925,
+      "words": 5471,
+      "characters": 37799,
+      "status": "success"
+    },
+    {
+      "filename": "Part 1_ Definition and Components of Cognition.pdf",
+      "tokens": 2342,
+      "words": 1568,
+      "characters": 11137,
+      "status": "success"
+    },
+    {
+      "filename": "PresentationBrainMindInterface-2019.pdf",
+      "tokens": 7501,
+      "words": 5507,
+      "characters": 34232,
+      "status": "success"
+    },
+    {
+      "filename": "Neuron.pdf",
+      "tokens": 21586,
+      "words": 4114,
+      "characters": 68669,
+      "status": "success"
+    },
+    {
+      "filename": "ProtectionofEEGDatausingBlockchainPlatform.pdf",
+      "tokens": 3574,
+      "words": 2444,
+      "characters": 15120,
+      "status": "success"
+    },
+    {
+      "filename": "Reasoning __ Introduction to Reasoning - Anna’s Archive.pdf",
+      "tokens": 0,
+      "words": 0,
+      "characters": 0,
+      "status": "empty_or_invalid_text"
+    },
+    {
+      "filename": "Privacy-preserving authentication protocol for user personal device securityin Brain–Computer Interface.pdf",
+      "tokens": 21670,
+      "words": 9677,
+      "characters": 65495,
+      "status": "success"
+    },
+    {
+      "filename": "Saroj Bista Thesis IOE.pdf",
+      "tokens": 15677,
+      "words": 9895,
+      "characters": 63863,
+      "status": "success"
+    },
+    {
+      "filename": "THE RELATIONSHIP OF HEAD SIZE TO ALPHA FREQUENCY WITH IMPLICATIONS TO A.pdf",
+      "tokens": 6157,
+      "words": 4298,
+      "characters": 25846,
+      "status": "success"
+    },
+    {
+      "filename": "Aberrant-Effective-Connectivity-During-Eye-Gaze_2023_Biological-Psychiatry--.pdf",
+      "tokens": 15023,
+      "words": 8724,
+      "characters": 60868,
+      "status": "success"
+    },
+    {
+      "filename": "Aberrant-Hierarchical-Prediction-Errors-Are-Associ_2023_Biological-Psychiatr.pdf",
+      "tokens": 13857,
+      "words": 8016,
+      "characters": 54240,
+      "status": "success"
+    },
+    {
+      "filename": "Acknowledgment_2023_Biological-Psychiatry--Cognitive-Neuroscience-and-Neuroi.pdf",
+      "tokens": 2471,
+      "words": 1014,
+      "characters": 7089,
+      "status": "success"
+    },
+    {
+      "filename": "Disruptions-of-Hierarchical-Cortical-Orga_2023_Biological-Psychiatry--Cognit.pdf",
+      "tokens": 14015,
+      "words": 8154,
+      "characters": 58524,
+      "status": "success"
+    },
+    {
+      "filename": "Editorial-Board-Pa_2023_Biological-Psychiatry--Cognitive-Neuroscience-and-Ne.pdf",
+      "tokens": 1384,
+      "words": 688,
+      "characters": 4520,
+      "status": "success"
+    },
+    {
+      "filename": "Guide-for-Author_2023_Biological-Psychiatry--Cognitive-Neuroscience-and-Neur.pdf",
+      "tokens": 10786,
+      "words": 7558,
+      "characters": 51620,
+      "status": "success"
+    },
+    {
+      "filename": "Hippocampus-Centered-Network-Is-Associated-Wit_2023_Biological-Psychiatry--C.pdf",
+      "tokens": 13770,
+      "words": 8016,
+      "characters": 54983,
+      "status": "success"
+    },
+    {
+      "filename": "In-This-Issue_2023_Biological-Psychiatry--Cognitive-Neuroscience-and-Neuroim.pdf",
+      "tokens": 1214,
+      "words": 810,
+      "characters": 6060,
+      "status": "success"
+    },
+    {
+      "filename": "Linking-Neural-Connectivity-Patterns-With-Rea_2023_Biological-Psychiatry--Co.pdf",
+      "tokens": 2773,
+      "words": 1865,
+      "characters": 13121,
+      "status": "success"
+    },
+    {
+      "filename": "Mismatch-Negativity-and-Theta-Oscillations_2023_Biological-Psychiatry--Cogni.pdf",
+      "tokens": 15957,
+      "words": 8604,
+      "characters": 59721,
+      "status": "success"
+    },
+    {
+      "filename": "Neuroinformatics Chiquito Joaqium Crasto, Stephen H_ Koslow.pdf",
+      "tokens": 144840,
+      "words": 96012,
+      "characters": 646418,
+      "status": "success"
+    },
+    {
+      "filename": "Predictive-Coding-in-Early-Schizophrenia-and-Clinic_2023_Biological-Psychiat.pdf",
+      "tokens": 3113,
+      "words": 2074,
+      "characters": 13679,
+      "status": "success"
+    },
+    {
+      "filename": "Qualitatively-Different-Delay-Dependent-Working-_2023_Biological-Psychiatry-.pdf",
+      "tokens": 12501,
+      "words": 7704,
+      "characters": 50863,
+      "status": "success"
+    },
+    {
+      "filename": "Neurobehavioral-Reward-and-Sleep-Circadian-Pr_2023_Biological-Psychiatry--Co.pdf",
+      "tokens": 18070,
+      "words": 9731,
+      "characters": 68343,
+      "status": "success"
+    },
+    {
+      "filename": "Subscribers--Pag_2023_Biological-Psychiatry--Cognitive-Neuroscience-and-Neur.pdf",
+      "tokens": 963,
+      "words": 667,
+      "characters": 4559,
+      "status": "success"
+    },
+    {
+      "filename": "Table-of-Content_2023_Biological-Psychiatry--Cognitive-Neuroscience-and-Neur.pdf",
+      "tokens": 1033,
+      "words": 483,
+      "characters": 3589,
+      "status": "success"
+    },
+    {
+      "filename": "The-Brain-and-Schizophrenia--From-Para_2023_Biological-Psychiatry--Cognitive.pdf",
+      "tokens": 3003,
+      "words": 1975,
+      "characters": 14065,
+      "status": "success"
+    },
+    {
+      "filename": "Structural-and-Functional-Brain-Patterns-Predict-Fo_2023_Biological-Psychiat.pdf",
+      "tokens": 16520,
+      "words": 8592,
+      "characters": 60592,
+      "status": "success"
+    },
+    {
+      "filename": "The Human Brain Project.pdf",
+      "tokens": 12724,
+      "words": 7657,
+      "characters": 53935,
+      "status": "success"
+    },
+    {
+      "filename": "Toward Direct brain-computer communication.pdf",
+      "tokens": 16408,
+      "words": 11447,
+      "characters": 73365,
+      "status": "success"
+    },
+    {
+      "filename": "Using Neurofeedback to Teach Self-Regulation to Children Living in Poverty.pdf",
+      "tokens": 14459,
+      "words": 11094,
+      "characters": 66901,
+      "status": "success"
+    },
+    {
+      "filename": "What is neurohacking? Defining\nthe conceptual, ethical and legal\nboundaries.pdf",
+      "tokens": 18696,
+      "words": 11246,
+      "characters": 79266,
+      "status": "success"
+    },
+    {
+      "filename": "When Brain–Computer Interfaces meet the metaverse: Landscape,\ndemonstrator, trends, challenges, and concerns.pdf",
+      "tokens": 24210,
+      "words": 15506,
+      "characters": 104126,
+      "status": "success"
+    },
+    {
+      "filename": "Winkler-FutureWarfare-2019.pdf",
+      "tokens": 4079,
+      "words": 3048,
+      "characters": 19499,
+      "status": "success"
+    },
+    {
+      "filename": "002.pdf",
+      "tokens": 9680,
+      "words": 6034,
+      "characters": 38180,
+      "status": "success"
+    },
+    {
+      "filename": "1-s2.0-S092442472501252X-main.pdf",
+      "tokens": 19554,
+      "words": 10740,
+      "characters": 76858,
+      "status": "success"
+    },
+    {
+      "filename": "Single-neuron representations of odours in the human brain.pdf",
+      "tokens": 24018,
+      "words": 14705,
+      "characters": 95466,
+      "status": "success"
+    },
+    {
+      "filename": "1-s2.0-S2666053925001249-main.pdf",
+      "tokens": 11397,
+      "words": 6822,
+      "characters": 44302,
+      "status": "success"
+    },
+    {
+      "filename": "10.21924_cst.10.2.2025.1737.pdf",
+      "tokens": 8404,
+      "words": 5789,
+      "characters": 40280,
+      "status": "success"
+    },
+    {
+      "filename": "Kalb-NonUniversalLanguageTaxonology.pdf",
+      "tokens": 262171,
+      "words": 211261,
+      "characters": 1115125,
+      "status": "success"
+    },
+    {
+      "filename": "1-s2.0-S2590291125010575-main.pdf",
+      "tokens": 24281,
+      "words": 17003,
+      "characters": 110825,
+      "status": "success"
+    },
+    {
+      "filename": "2010. Use of BCI Technology for Treatment of Low Concentration Problem in Children with EEG Analysis-ver2.pdf",
+      "tokens": 2744,
+      "words": 1920,
+      "characters": 12374,
+      "status": "success"
+    },
+    {
+      "filename": "2011. Offline Study of Brain Computer Interfacing for Hand Movement Using OpenViBE.pdf",
+      "tokens": 4297,
+      "words": 3048,
+      "characters": 19851,
+      "status": "success"
+    },
+    {
+      "filename": "10.21924_cst.10.2.2025.1758.pdf",
+      "tokens": 9148,
+      "words": 5855,
+      "characters": 40190,
+      "status": "success"
+    },
+    {
+      "filename": "2012. Classification of 2D hand movement with power spectrum estimation.pdf",
+      "tokens": 6047,
+      "words": 4212,
+      "characters": 26508,
+      "status": "success"
+    },
+    {
+      "filename": "106-121+HP-6111+Final+draft_Updated[1].pdf",
+      "tokens": 15278,
+      "words": 9931,
+      "characters": 67284,
+      "status": "success"
+    },
+    {
+      "filename": "2012 Analysis and testing of PSO variants through application in EEGERP adaptive filtering approach.pdf",
+      "tokens": 10899,
+      "words": 7005,
+      "characters": 45108,
+      "status": "success"
+    },
+    {
+      "filename": "2012. Power Spectrum Analysis of EEG Signals for Estimating Visual attention.pdf",
+      "tokens": 3993,
+      "words": 2681,
+      "characters": 16953,
+      "status": "success"
+    },
+    {
+      "filename": "2014. A new approach for utilisation of single ERP to control multiple commands in BCI.pdf",
+      "tokens": 3803,
+      "words": 2029,
+      "characters": 13969,
+      "status": "success"
+    },
+    {
+      "filename": "2013. Descendent adaptive noise cancellers to improve SNR of contaminated EEG with gradient-based and EA.pdf",
+      "tokens": 12434,
+      "words": 7532,
+      "characters": 46501,
+      "status": "success"
+    },
+    {
+      "filename": "2014. Adaptive filtering of EEGERP through Bounded Range Artificial Bee Colony BR-ABC algorithm.pdf",
+      "tokens": 11483,
+      "words": 6223,
+      "characters": 40260,
+      "status": "success"
+    },
+    {
+      "filename": "2014. Adaptive filtering of EEGERP through noise cancellers using an improved PSO algorithm.pdf",
+      "tokens": 22378,
+      "words": 11821,
+      "characters": 77522,
+      "status": "success"
+    },
+    {
+      "filename": "2014. Improved range selection method for evolutionary algorithm based adaptive filtering of EEG-ERP signals.pdf",
+      "tokens": 20119,
+      "words": 10878,
+      "characters": 68999,
+      "status": "success"
+    },
+    {
+      "filename": "2013. EEGERP Adaptive Noise Canceller Design with Controlled Search Space (CSS) Approach in Cuckoo and Other Optimization Algorithms.pdf",
+      "tokens": 16021,
+      "words": 9364,
+      "characters": 61898,
+      "status": "success"
+    },
+    {
+      "filename": "2015. Sub‐band adaptive filtering method for electroencephalography event related.pdf",
+      "tokens": 23387,
+      "words": 10590,
+      "characters": 65696,
+      "status": "success"
+    },
+    {
+      "filename": "2016. QRS detection using adaptive filters A comparative study.pdf",
+      "tokens": 14829,
+      "words": 8952,
+      "characters": 50866,
+      "status": "success"
+    },
+    {
+      "filename": "2016. Scaled Correlation Analysis of EEG - A New Measure of Signal Influence.pdf",
+      "tokens": 14509,
+      "words": 8476,
+      "characters": 52184,
+      "status": "success"
+    },
+    {
+      "filename": "2016. Sub band Classification of Decomposed Single ERP Co-variants for Multi-class BCI - A Qualitative and Quantitative Approach.pdf",
+      "tokens": 11187,
+      "words": 6460,
+      "characters": 41248,
+      "status": "success"
+    },
+    {
+      "filename": "2017. Descendant adaptive filter to remove different noises from ECG signals.pdf",
+      "tokens": 8590,
+      "words": 4996,
+      "characters": 32295,
+      "status": "success"
+    },
+    {
+      "filename": "2015. Study of ABC and PSO algorithms as optimised adaptive noise canceller.pdf",
+      "tokens": 13891,
+      "words": 8114,
+      "characters": 51982,
+      "status": "success"
+    },
+    {
+      "filename": "The Cognitive Neuroscience of Memory_ Encoding and Retrieval.pdf",
+      "tokens": 262929,
+      "words": 153801,
+      "characters": 1053242,
+      "status": "success"
+    },
+    {
+      "filename": "2018. Emotion Recognition System based on EEG signal - A Comparative Study of Different Features and Classifiers.pdf",
+      "tokens": 5762,
+      "words": 3931,
+      "characters": 24479,
+      "status": "success"
+    },
+    {
+      "filename": "2018. A Content Based Image Retrieval System Analysis of Individual and Mixed Image Features.pdf",
+      "tokens": 6363,
+      "words": 4123,
+      "characters": 26620,
+      "status": "success"
+    },
+    {
+      "filename": "2017. Performance prediction of adaptive filters for EEG signal.pdf",
+      "tokens": 8755,
+      "words": 5208,
+      "characters": 32667,
+      "status": "success"
+    },
+    {
+      "filename": "2018c. Computational Model for Human Decision Making - A Study of Prospect Theory.pdf",
+      "tokens": 6753,
+      "words": 4371,
+      "characters": 27253,
+      "status": "success"
+    },
+    {
+      "filename": "2020. A concept of sub-bands event related potentials to increase classes of brain computer interface system.pdf",
+      "tokens": 6829,
+      "words": 3761,
+      "characters": 25104,
+      "status": "success"
+    },
+    {
+      "filename": "2018. Principal and independent component-based analysis to enhance adaptive noise canceller for ECG.pdf",
+      "tokens": 16787,
+      "words": 8598,
+      "characters": 55453,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Comprehensive Investigation on IoT based Smart Healthcare System.pdf",
+      "tokens": 7601,
+      "words": 5268,
+      "characters": 34636,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Descendant adaptive filter to remove different noises for ECG Signals.pdf",
+      "tokens": 8762,
+      "words": 5096,
+      "characters": 32486,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Electroencephalogram-based Cognitive Load Classification During Mental Arithmetic Task.pdf",
+      "tokens": 4478,
+      "words": 2712,
+      "characters": 16381,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Audio-visual stimulation based emotion classification by correlated EEG Channels.pdf",
+      "tokens": 11676,
+      "words": 7384,
+      "characters": 47902,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Feature Extraction and Comparison of EEG Based Brain Connectivity Networks using Graph Metrics.pdf",
+      "tokens": 6835,
+      "words": 4085,
+      "characters": 25396,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Regression Based Model of Low Cost Air Quality  Monitoring System.pdf",
+      "tokens": 6072,
+      "words": 3820,
+      "characters": 23827,
+      "status": "success"
+    },
+    {
+      "filename": "2021. A new approach for emotions recognition through EOG and EMG signal.pdf",
+      "tokens": 8577,
+      "words": 4829,
+      "characters": 32522,
+      "status": "success"
+    },
+    {
+      "filename": "2021. Identification of Similar Gastrointestinal Images through Content Based Image Retrieval System based on Analytical Hierarchical Process.pdf",
+      "tokens": 5862,
+      "words": 3861,
+      "characters": 24743,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Development of Emotional Decision-Making Model Using EEG Signals.pdf",
+      "tokens": 0,
+      "words": 0,
+      "characters": 0,
+      "status": "empty_or_invalid_text"
+    },
+    {
+      "filename": "2021. A review on content-based image retrieval system.pdf",
+      "tokens": 18695,
+      "words": 10892,
+      "characters": 69533,
+      "status": "success"
+    },
+    {
+      "filename": "2021.Analytic hierarchy process-based automatic feature weight assignment method for content-based satellite image retrieval system.pdf",
+      "tokens": 7111,
+      "words": 4489,
+      "characters": 30048,
+      "status": "success"
+    },
+    {
+      "filename": "2021.IoT enabled cloud based real time remote ECG monitoring system.pdf",
+      "tokens": 9457,
+      "words": 5964,
+      "characters": 38492,
+      "status": "success"
+    },
+    {
+      "filename": "2020. Analysis and Identification of EEG Features for Mental Stress.pdf",
+      "tokens": 0,
+      "words": 0,
+      "characters": 0,
+      "status": "empty_or_invalid_text"
+    },
+    {
+      "filename": "2021c. Cognitive Load Classification during Arithmetic Task using Single Convolution Layer based 2D-CNN Model.pdf",
+      "tokens": 4113,
+      "words": 2678,
+      "characters": 16265,
+      "status": "success"
+    },
+    {
+      "filename": "2021c. Mental_Workload_Classification_for_Multitasking_Test_using_Electroencephalogram_Signal.pdf",
+      "tokens": 7448,
+      "words": 3900,
+      "characters": 25015,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Analysis and Testing of Different Penalty Function.pdf",
+      "tokens": 6257,
+      "words": 4486,
+      "characters": 28164,
+      "status": "success"
+    },
+    {
+      "filename": "2021. IoT-Based Smart Healthcare System A Review on Constituent Technologies.pdf",
+      "tokens": 31134,
+      "words": 18686,
+      "characters": 128941,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Cloud‑Based Remote Patient Monitoring System with Abnormality Detection and Alert Notification.pdf",
+      "tokens": 11369,
+      "words": 8028,
+      "characters": 51328,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Comparative Analysis of Node Dependent and Independent Graph Metrices for Brain Connectivity Network.pdf",
+      "tokens": 7592,
+      "words": 4451,
+      "characters": 28311,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Development of human decision making model with consideration of human factors through reinforcement learning and prospect utility theory.pdf",
+      "tokens": 12338,
+      "words": 7829,
+      "characters": 49772,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Electrocardiogram signal compression using tunable-Q wavelet transform and meta-heuristic optimization techniques.pdf",
+      "tokens": 25999,
+      "words": 12338,
+      "characters": 81145,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Content‑Based Medical Image Retrieval System forSkin Melanoma Diagnosis Based on Optimized Pair‑Wise Comparison Approach.pdf",
+      "tokens": 14715,
+      "words": 8783,
+      "characters": 56491,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Fission Fusion Behavior-Based Rao Algorithm.pdf",
+      "tokens": 7976,
+      "words": 4579,
+      "characters": 29066,
+      "status": "success"
+    },
+    {
+      "filename": "Brain-Computer Interface.pdf",
+      "tokens": 160559,
+      "words": 103493,
+      "characters": 677079,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Human decision making modelling for gambling task under uncertainty and risk.pdf",
+      "tokens": 15095,
+      "words": 8964,
+      "characters": 54551,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Internet-of-Things-Enabled Early Warning Score.pdf",
+      "tokens": 10290,
+      "words": 4687,
+      "characters": 36468,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Principal and independent component-based analysis to enhance adaptive noise canceller for electrocardiogram signals.pdf",
+      "tokens": 16942,
+      "words": 8691,
+      "characters": 55578,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Simulation and modeling of human decision-making process through reinforcement learning based computational model involving past experiences.pdf",
+      "tokens": 14616,
+      "words": 7708,
+      "characters": 48379,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Simulation and modeling of human decision-making process through reinforcement learning based.pdf",
+      "tokens": 14614,
+      "words": 7707,
+      "characters": 48359,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Quaternary classification of emotions.pdf",
+      "tokens": 12124,
+      "words": 7109,
+      "characters": 45590,
+      "status": "success"
+    },
+    {
+      "filename": "2022c. Modelling of Human Decision making process and Effect of Human Factor A Review.pdf",
+      "tokens": 9017,
+      "words": 5627,
+      "characters": 35226,
+      "status": "success"
+    },
+    {
+      "filename": "2022c. Comparative Analysis of Node Dependent and Node Independent Graph Metrices for Brain Connectivity Network.pdf",
+      "tokens": 7909,
+      "words": 4650,
+      "characters": 29425,
+      "status": "success"
+    },
+    {
+      "filename": "2023. An Online Learning and Problem Solving (OLPS).pdf",
+      "tokens": 7425,
+      "words": 4851,
+      "characters": 29957,
+      "status": "success"
+    },
+    {
+      "filename": "2022. Vital Sign Monitoring System for Healthcare Through IoT Based Personal Service Application.pdf",
+      "tokens": 15010,
+      "words": 10381,
+      "characters": 66432,
+      "status": "success"
+    },
+    {
+      "filename": "2023. An online Learning and Problem Solving EEG Database.pdf",
+      "tokens": 7429,
+      "words": 4601,
+      "characters": 28618,
+      "status": "success"
+    },
+    {
+      "filename": "2023. A new fission fusion behavior‑based Rao algorithm (FFBBRA) for solving optimization problems.pdf",
+      "tokens": 13794,
+      "words": 8024,
+      "characters": 50797,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Automated epilepsy seizure detection from EEG signal based on hybrid CNN and LSTM Model.pdf",
+      "tokens": 10670,
+      "words": 6042,
+      "characters": 40983,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Comparative Analysis of Node-dependent and Node-independent Graph Matrices .pdf",
+      "tokens": 6766,
+      "words": 4462,
+      "characters": 28052,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Improved Concentrated Mental State Classification through EEG Signal Augmentation and One-Dimensional Convolutional Neural Network.pdf",
+      "tokens": 5316,
+      "words": 3430,
+      "characters": 21084,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Educational institutions selection using Analytic Hierarchy Process based on National Institutional Ranking Framework (NIRF) criteria.pdf",
+      "tokens": 12418,
+      "words": 7844,
+      "characters": 49184,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Dynamic characterization of functional brain connectivity network for mental workload condition using an effective network identifier.pdf",
+      "tokens": 9075,
+      "words": 5556,
+      "characters": 36058,
+      "status": "success"
+    },
+    {
+      "filename": "2023 Weighted ordinal connection based functional network classification for schizophrenia disease detection using EEG signal.pdf",
+      "tokens": 16867,
+      "words": 10097,
+      "characters": 65650,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Sparse based Particle Swarm Optimization.pdf",
+      "tokens": 4399,
+      "words": 2863,
+      "characters": 17896,
+      "status": "success"
+    },
+    {
+      "filename": "2023.Improved Classification of Mental Workload Using One Dimensional Convolutional Neural Network and SMOTE Technique.pdf",
+      "tokens": 6687,
+      "words": 3879,
+      "characters": 24867,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Mental Health Monitoring Using Deep Learning Technique for Early‑Stage Depression Detection.pdf",
+      "tokens": 13020,
+      "words": 8129,
+      "characters": 51792,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Internet‑of‑things based machine learning enabled medical decision.pdf",
+      "tokens": 12372,
+      "words": 7546,
+      "characters": 50243,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Parallel Global Best-Worst Particle Swarm Optimization Algorithm.pdf",
+      "tokens": 17803,
+      "words": 3674,
+      "characters": 53650,
+      "status": "success"
+    },
+    {
+      "filename": "2024. An End-to-End Brain Computer Interface System for Mental Workload Estimation through Hybrid Deep Learning Model.pdf",
+      "tokens": 10627,
+      "words": 6973,
+      "characters": 44685,
+      "status": "success"
+    },
+    {
+      "filename": "2023. Subject wise data augmentation based on balancing factor for quaternaryemotion recognition through hybrid deep learning model.pdf",
+      "tokens": 12582,
+      "words": 6283,
+      "characters": 41655,
+      "status": "success"
+    },
+    {
+      "filename": "2024. Optimization of Energy Efficiency in 5G Network.pdf",
+      "tokens": 6704,
+      "words": 4168,
+      "characters": 26938,
+      "status": "success"
+    },
+    {
+      "filename": "2024. A Survey on Parallel Nature Inspired Algorithms.pdf",
+      "tokens": 13154,
+      "words": 8080,
+      "characters": 53384,
+      "status": "success"
+    },
+    {
+      "filename": "2024. Optimization of Energy Efficiency in 5G.pdf",
+      "tokens": 6459,
+      "words": 4015,
+      "characters": 25629,
+      "status": "success"
+    },
+    {
+      "filename": "2024. Robustness Analysis of RSGBWPSO Algorithm over Noisy Objective Functions.pdf",
+      "tokens": 5605,
+      "words": 3160,
+      "characters": 21288,
+      "status": "success"
+    },
+    {
+      "filename": "2024. Implementation and testing of parallel PSO to attain speedup on general purpose computer systems.pdf",
+      "tokens": 15469,
+      "words": 9099,
+      "characters": 60212,
+      "status": "success"
+    },
+    {
+      "filename": "2512.04313v1.pdf",
+      "tokens": 13804,
+      "words": 7757,
+      "characters": 54708,
+      "status": "success"
+    },
+    {
+      "filename": "2024. EEG based variable node functional NW.pdf",
+      "tokens": 18219,
+      "words": 10311,
+      "characters": 69104,
+      "status": "success"
+    },
+    {
+      "filename": "Alzheimer s   Dementia - 2025 - Rada - Quantitative EEG obtained from Dual‐Task paradigms for the study of preclinical (1).pdf",
+      "tokens": 1298,
+      "words": 650,
+      "characters": 4915,
+      "status": "success"
+    },
+    {
+      "filename": "2024.A divide and conquer approach for in-depth analysis of brain connectivity network using ordinal sequence based characterizer.pdf",
+      "tokens": 16544,
+      "words": 9713,
+      "characters": 61539,
+      "status": "success"
+    },
+    {
+      "filename": "Alzheimer s   Dementia - 2025 - Rada - Quantitative EEG obtained from Dual‐Task paradigms for the study of preclinical.pdf",
+      "tokens": 1298,
+      "words": 650,
+      "characters": 4915,
+      "status": "success"
+    },
+    {
+      "filename": "3770501.3770523.pdf",
+      "tokens": 8031,
+      "words": 4375,
+      "characters": 31599,
+      "status": "success"
+    },
+    {
+      "filename": "313-pr.pdf",
+      "tokens": 17608,
+      "words": 10504,
+      "characters": 70530,
+      "status": "success"
+    },
+    {
+      "filename": "Brain and Behavior - 2025 - Song - Acute Effects of Portable Dry‐EEG Neurofeedback on Classical Chinese Learning  A.pdf",
+      "tokens": 12506,
+      "words": 4199,
+      "characters": 46566,
+      "status": "success"
+    },
+    {
+      "filename": "2024. An optimized pair‑wise comparison approach forautomated feature weight assignment incontent‑based image retrieval system.pdf",
+      "tokens": 18836,
+      "words": 10687,
+      "characters": 68463,
+      "status": "success"
+    },
+    {
+      "filename": "J of Applied Polymer Sci - 2025 - Gnonhoue - Hybrid Flexible Dry Electrodes for Electroencephalography  Electrical and.pdf",
+      "tokens": 15018,
+      "words": 8684,
+      "characters": 56486,
+      "status": "success"
+    },
+    {
+      "filename": "J of Applied Polymer Sci - 2025 - Gnonhoue - Flexible Dry Electrodes Based on Styrene‐Ethylene‐Butylene‐Styrene Carbon.pdf",
+      "tokens": 20311,
+      "words": 12320,
+      "characters": 80494,
+      "status": "success"
+    },
+    {
+      "filename": "TESEA_vol6_n2_580_galleys.pdf",
+      "tokens": 7350,
+      "words": 4439,
+      "characters": 30447,
+      "status": "success"
+    },
+    {
+      "filename": "Real-time generative AI experience of the Vanitas painting.pdf",
+      "tokens": 18440,
+      "words": 12192,
+      "characters": 77678,
+      "status": "success"
+    },
+    {
+      "filename": "PIIS221112472501277X.pdf",
+      "tokens": 35265,
+      "words": 4350,
+      "characters": 46366,
+      "status": "success"
+    },
+    {
+      "filename": "belkacem2020.pdf",
+      "tokens": 7918,
+      "words": 5438,
+      "characters": 34013,
+      "status": "success"
+    },
+    {
+      "filename": "computation-13-00287.pdf",
+      "tokens": 12101,
+      "words": 7672,
+      "characters": 50431,
+      "status": "success"
+    },
+    {
+      "filename": "bioengineering-13-00152.pdf",
+      "tokens": 16504,
+      "words": 9982,
+      "characters": 72812,
+      "status": "success"
+    },
+    {
+      "filename": "JPR-526855-individual-autonomic-profiles-influence-brain-ndash-heart-co.pdf",
+      "tokens": 14182,
+      "words": 8085,
+      "characters": 59428,
+      "status": "success"
+    },
+    {
+      "filename": "life-16-00114.pdf",
+      "tokens": 13361,
+      "words": 7608,
+      "characters": 53950,
+      "status": "success"
+    },
+    {
+      "filename": "s12910-017-0220-y.pdf",
+      "tokens": 14095,
+      "words": 9544,
+      "characters": 61952,
+      "status": "success"
+    },
+    {
+      "filename": "s12984-025-01769-8.pdf",
+      "tokens": 21093,
+      "words": 14430,
+      "characters": 93915,
+      "status": "success"
+    },
+    {
+      "filename": "s41598-025-23049-0.pdf",
+      "tokens": 15184,
+      "words": 9945,
+      "characters": 62697,
+      "status": "success"
+    },
+    {
+      "filename": "s10462-024-11024-6.pdf",
+      "tokens": 34542,
+      "words": 21982,
+      "characters": 142628,
+      "status": "success"
+    },
+    {
+      "filename": "s41598-025-24831-w.pdf",
+      "tokens": 13967,
+      "words": 9220,
+      "characters": 65995,
+      "status": "success"
+    },
+    {
+      "filename": "sensors-26-00385-v2.pdf",
+      "tokens": 18072,
+      "words": 9388,
+      "characters": 65550,
+      "status": "success"
+    },
+    {
+      "filename": "s41467-025-65464-x.pdf",
+      "tokens": 18391,
+      "words": 10681,
+      "characters": 72322,
+      "status": "success"
+    },
+    {
+      "filename": "technologies-13-00501-v2.pdf",
+      "tokens": 14703,
+      "words": 9291,
+      "characters": 65090,
+      "status": "success"
+    },
+    {
+      "filename": "virtualworlds-04-00053-v2.pdf",
+      "tokens": 15686,
+      "words": 10796,
+      "characters": 69838,
+      "status": "success"
+    },
+    {
+      "filename": "bernal2021.pdf",
+      "tokens": 35466,
+      "words": 13117,
+      "characters": 135928,
+      "status": "success"
+    },
+    {
+      "filename": "Guyton_and_Hall_Textbook_of_Medical_Physiology_14th_Ed.pdf",
+      "tokens": 442118,
+      "words": 324420,
+      "characters": 2001538,
+      "status": "success"
+    },
+    {
+      "filename": "Computing the brain _ a guide to neuroinformatics -- Michael A_ Arbib; Jeffrey S_ Grethe -- 1st edition, March 15, 2001 -- Academic Press, -- 9780080529752 -- 8073210501edba6d3f974543925a4fad -- Anna’s Archive.pdf",
+      "tokens": 3257587,
+      "words": 159419,
+      "characters": 5350697,
+      "status": "success"
+    }
+  ]
+}

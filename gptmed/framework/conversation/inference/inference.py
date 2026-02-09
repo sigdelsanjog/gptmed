@@ -13,6 +13,12 @@ import json
 from ..model.architecture import ConversationLanguageModel
 from ..model.configs.model_config import ConversationModelConfig
 
+try:
+    from transformers import GPT2Tokenizer
+    TOKENIZER_AVAILABLE = True
+except ImportError:
+    TOKENIZER_AVAILABLE = False
+
 
 logging.basicConfig(
     level=logging.INFO,
@@ -223,18 +229,37 @@ class ConversationGenerator:
 
 
 class TokenizerHelper:
-    """Simple tokenizer helper (placeholder for full tokenizer integration)"""
+    """HuggingFace-based tokenizer for encoding/decoding"""
     
-    def __init__(self, vocab_size: int = 10000):
-        """Initialize tokenizer helper"""
+    def __init__(self, vocab_size: int = 50256, model_name: str = "gpt2"):
+        """
+        Initialize tokenizer helper
+        
+        Args:
+            vocab_size: Size of vocabulary (should match model)
+            model_name: HuggingFace model name for tokenizer
+        """
         self.vocab_size = vocab_size
-        # In practice, would load tokenizer from file
+        self.model_name = model_name
+        
+        if TOKENIZER_AVAILABLE:
+            try:
+                self.tokenizer = GPT2Tokenizer.from_pretrained(model_name)
+                logger.info(f"Loaded HuggingFace {model_name} tokenizer")
+            except Exception as e:
+                logger.error(f"Failed to load tokenizer: {e}")
+                self.tokenizer = None
+        else:
+            logger.warning("transformers library not available - install with: pip install transformers")
+            self.tokenizer = None
+        
+        # Set pad token if not already set
+        if self.tokenizer and self.tokenizer.pad_token is None:
+            self.tokenizer.pad_token = self.tokenizer.eos_token
     
     def encode(self, text: str) -> List[int]:
         """
-        Encode text to tokens (placeholder)
-        
-        In production, would use actual tokenizer (sentencepiece, etc.)
+        Encode text to tokens using HuggingFace tokenizer
         
         Args:
             text: Text to encode
@@ -242,17 +267,22 @@ class TokenizerHelper:
         Returns:
             Token IDs
         """
-        # Placeholder: just return dummy tokens
-        # In practice, integrate with actual tokenizer
-        logger.warning("Using placeholder tokenizer - integrate with real tokenizer")
+        if self.tokenizer is None:
+            logger.error("Tokenizer not available")
+            return [1]  # Return fallback token
         
-        # Simple character-level encoding for demo
-        tokens = [ord(c) % self.vocab_size for c in text[:100]]
-        return tokens if tokens else [1]  # Return at least one token
+        try:
+            tokens = self.tokenizer.encode(text, add_special_tokens=False)
+            # Clamp tokens to vocab size
+            tokens = [min(t, self.vocab_size - 1) for t in tokens]
+            return tokens if tokens else [1]
+        except Exception as e:
+            logger.error(f"Tokenization error: {e}")
+            return [1]
     
     def decode(self, token_ids: List[int]) -> str:
         """
-        Decode tokens to text (placeholder)
+        Decode tokens to text using HuggingFace tokenizer
         
         Args:
             token_ids: List of token IDs
@@ -260,12 +290,18 @@ class TokenizerHelper:
         Returns:
             Decoded text
         """
-        # Placeholder: just return dummy text
-        logger.warning("Using placeholder tokenizer - integrate with real tokenizer")
+        if self.tokenizer is None:
+            logger.error("Tokenizer not available")
+            return "[UNK]"
         
-        # Simple character-level decoding for demo
-        text = ''.join(chr(t) for t in token_ids if t < 256)
-        return text if text else "[UNK]"
+        try:
+            # Filter out pad tokens
+            token_ids = [t for t in token_ids if t != self.tokenizer.pad_token_id]
+            text = self.tokenizer.decode(token_ids, skip_special_tokens=True)
+            return text if text else "[UNK]"
+        except Exception as e:
+            logger.error(f"Decoding error: {e}")
+            return "[UNK]"
 
 
 class InferenceConfig:
@@ -320,13 +356,18 @@ class ConversationInference:
             config: Inference configuration
         """
         self.config = config
-        self.tokenizer = TokenizerHelper()
         
-        # Load model
+        # Load model first to get config
         checkpoint_path = config.get_checkpoint_path()
         self.model, self.model_config = ModelLoader.load_model(
             checkpoint_path,
             device=config.device
+        )
+        
+        # Initialize tokenizer with correct vocab size from model config
+        self.tokenizer = TokenizerHelper(
+            vocab_size=self.model_config.vocab_size,
+            model_name="gpt2"
         )
         
         self.generator = ConversationGenerator(

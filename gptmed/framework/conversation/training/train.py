@@ -193,6 +193,7 @@ class Trainer:
             d_ff=config.d_ff,
             max_seq_len=config.max_seq_len,
             dropout=config.dropout,
+            use_gradient_checkpointing=getattr(config, 'use_gradient_checkpointing', False),
         ).to(self.device)
         
         # Verify model is on correct device
@@ -321,6 +322,12 @@ class Trainer:
                 total_loss += loss.item()
                 num_batches += 1
                 self.global_step += 1
+                
+                # Clear GPU cache every N steps to prevent memory fragmentation
+                if self.global_step % getattr(self.config, 'clear_cache_interval', 10) == 0:
+                    if self.device.type == 'cuda':
+                        torch.cuda.empty_cache()
+                        logger.debug(f"Cleared GPU cache at step {self.global_step}")
                 
                 # Logging
                 if batch_idx % self.config.log_interval == 0:
@@ -469,7 +476,9 @@ class Trainer:
     
     def load_checkpoint(self, checkpoint_path: str):
         """
-        Load model checkpoint
+        Load model checkpoint with positional encoding interpolation support
+        
+        Handles dimension mismatches for positional encodings when max_seq_len changes.
         
         Args:
             checkpoint_path: Path to checkpoint file
@@ -485,6 +494,51 @@ class Trainer:
         for key in keys_to_remove:
             del model_state[key]
             logger.info(f"Removed incompatible key from checkpoint: {key}")
+        
+        # Interpolate positional encodings if sequence length changed
+        current_state = self.model.state_dict()
+        if 'embedding.positional_encoding.pe' in model_state:
+            checkpoint_pe = model_state['embedding.positional_encoding.pe']
+            current_pe = current_state['embedding.positional_encoding.pe']
+            
+            if checkpoint_pe.shape != current_pe.shape:
+                old_seq_len = checkpoint_pe.shape[1]
+                new_seq_len = current_pe.shape[1]
+                d_model = checkpoint_pe.shape[2]
+                
+                logger.warning(
+                    f"Positional encoding dimension mismatch detected!"
+                )
+                logger.warning(
+                    f"  Checkpoint: seq_len={old_seq_len}, d_model={d_model}"
+                )
+                logger.warning(
+                    f"  Current model: seq_len={new_seq_len}, d_model={d_model}"
+                )
+                logger.info(f"Interpolating positional encodings...")
+                
+                # Interpolate from old to new sequence length
+                # checkpoint_pe shape: [1, old_seq_len, d_model]
+                # Reshape to [1, d_model, old_seq_len] for interpolation
+                pe_reshaped = checkpoint_pe.permute(0, 2, 1)  # [1, d_model, old_seq_len]
+                
+                # Use bilinear interpolation (with align_corners=False for better generalization)
+                import torch.nn.functional as F
+                pe_interpolated = F.interpolate(
+                    pe_reshaped.unsqueeze(-1),  # [1, d_model, old_seq_len, 1]
+                    size=(new_seq_len, 1),      # target size
+                    mode='bilinear',
+                    align_corners=False
+                )
+                pe_interpolated = pe_interpolated.squeeze(-1)  # [1, d_model, new_seq_len]
+                pe_interpolated = pe_interpolated.permute(0, 2, 1)  # [1, new_seq_len, d_model]
+                
+                # Replace with interpolated version
+                model_state['embedding.positional_encoding.pe'] = pe_interpolated
+                logger.info(
+                    f"✓ Positional encodings interpolated: "
+                    f"{old_seq_len} → {new_seq_len} positions"
+                )
         
         self.model.load_state_dict(model_state, strict=False)
         self.optimizer.load_state_dict(checkpoint['optimizer_state'])

@@ -34,6 +34,7 @@ class ConversationLanguageModel(nn.Module):
         d_ff: int = None,
         max_seq_len: int = 512,
         dropout: float = 0.1,
+        use_gradient_checkpointing: bool = False,
     ):
         """
         Args:
@@ -44,6 +45,7 @@ class ConversationLanguageModel(nn.Module):
             d_ff: Feed-forward hidden dimension (default: 4 * d_model)
             max_seq_len: Maximum sequence length
             dropout: Dropout probability
+            use_gradient_checkpointing: Enable gradient checkpointing to save memory
         """
         super().__init__()
         
@@ -51,6 +53,7 @@ class ConversationLanguageModel(nn.Module):
         self.d_model = d_model
         self.n_layers = n_layers
         self.max_seq_len = max_seq_len
+        self.use_gradient_checkpointing = use_gradient_checkpointing
         
         # Embedding layer
         self.embedding = TokenPositionalEmbedding(

@@ -14,8 +14,8 @@ model:
 # DATA PATHS
 # ============================================================
 data:
-  train_data: ./data/tokenized/train.npy    # Path to training data (.npy file)
-  val_data: ./data/tokenized/val.npy        # Path to validation data (.npy file)
+  train_data: /home/travelingnepal/Documents/proj/codellm/code-llm/gptmed/gptmed/data/tokenized/train.npy
+  val_data: /home/travelingnepal/Documents/proj/codellm/code-llm/gptmed/gptmed/data/tokenized/val.npy
 
 # ============================================================
 # TRAINING HYPERPARAMETERS
@@ -39,12 +39,12 @@ optimizer:
 # CHECKPOINTING & LOGGING
 # ============================================================
 checkpointing:
-  checkpoint_dir: ./model/checkpoints    # Directory to save checkpoints
-  save_every: 1                          # Save checkpoint every N epochs
+  checkpoint_dir: /home/travelingnepal/Documents/proj/codellm/code-llm/gptmed/model/checkpoints
+  save_every: 100                          # Save checkpoint every N epochs
   keep_last_n: 3                         # Keep last N checkpoints
   
 logging:
-  log_dir: ./logs                # Directory for training logs
+  log_dir: /home/travelingnepal/Documents/proj/codellm/code-llm/gptmed/logs
   eval_every: 100                # Evaluate every N steps
   log_every: 10                  # Log metrics every N steps
 
@@ -62,3 +62,13 @@ advanced:
   max_steps: -1                  # Max training steps (-1 = use num_epochs)
   resume_from: null              # Path to checkpoint to resume from (null = start fresh)
   quick_test: false              # Use quick test config for debugging
+
+# ============================================================
+# REDIS CONFIGURATION (optional)
+# ============================================================
+redis:
+  enabled: true                  # Enable Redis metrics storage
+  host: localhost                # Redis server host
+  port: 6379                     # Redis server port
+  db: 0                          # Redis database number
+  password: null                 # Redis password (null if no password)

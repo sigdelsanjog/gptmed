@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gptmed"
-version = "0.8.2"
+version = "0.8.3"
 description = "Efficient and customizable GPT-based framework for medical applications, enabling training, inference, and explainability of large language models in healthcare."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -84,6 +84,11 @@ data-preparation = "gptmed.data_preparation.cli:main"
 [tool.setuptools]
 packages = [
     "gptmed",
+    "gptmed.agentic",
+    "gptmed.agentic.agents",
+    "gptmed.agentic.core",
+    "gptmed.agentic.memory",
+    "gptmed.agentic.tools",
     "gptmed.configs",
     "gptmed.data",
     "gptmed.data.parsers",

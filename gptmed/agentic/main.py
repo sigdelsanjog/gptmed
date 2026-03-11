@@ -11,15 +11,16 @@ Usage:
 import sys
 import json
 import argparse
-import os
 from typing import Dict, Any, Optional
 from pathlib import Path
 
-# Add current directory to path for imports
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-
-from core import AgentLogger, AgentRegistry, AgentOrchestrator, WorkflowStep
-from agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent
+try:
+    from .core import AgentLogger, AgentRegistry, AgentOrchestrator, WorkflowStep
+    from .agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent
+except ImportError:
+    # Fallback for direct execution: `python main.py` from this folder.
+    from core import AgentLogger, AgentRegistry, AgentOrchestrator, WorkflowStep
+    from agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent
 
 
 class MedicalPrescriptionWorkflow:

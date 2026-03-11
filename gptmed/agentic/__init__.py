@@ -1,6 +1,6 @@
 """Agentic Medical Prescription Workflow Framework"""
 
-from core import (
+from .core import (
     AgentLogger,
     AgentRegistry,
     AgentOrchestrator,
@@ -10,11 +10,12 @@ from core import (
     WorkflowStep
 )
 
-from agents import (
+from .agents import (
     PrescriptionAnalyzerAgent,
     DoctorAgent,
     PharmacistAgent
 )
+from .agentic_api import BackendAgenticService
 
 __version__ = "1.0.0"
 __all__ = [
@@ -27,5 +28,6 @@ __all__ = [
     'WorkflowStep',
     'PrescriptionAnalyzerAgent',
     'DoctorAgent',
-    'PharmacistAgent'
+    'PharmacistAgent',
+    'BackendAgenticService'
 ]

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "gptmed"
-version = "0.8.4"
+version = "0.8.5"
 description = "Efficient and customizable GPT-based framework for medical applications, enabling training, inference, and explainability of large language models in healthcare."
 readme = "README.md"
 requires-python = ">=3.8"
@@ -68,6 +68,16 @@ data-preparation = [
     "numpy>=1.24.0",
     "PyPDF2>=3.0.0",
 ]
+agentic-api = [
+    "fastapi>=0.100.0",
+    "uvicorn[standard]>=0.22.0",
+]
+    agentic-api = [
+        "fastapi>=0.100.0",
+        "uvicorn[standard]>=0.22.0",
+        "python-multipart>=0.0.9",
+        "pytesseract>=0.3.10",
+    ]
 
 [project.urls]
 Homepage = "https://github.com/sigdelsanjog/gptmed"
@@ -84,6 +94,7 @@ data-preparation = "gptmed.data_preparation.cli:main"
 [tool.setuptools]
 packages = [
     "gptmed",
+    "gptmed.api",
     "gptmed.agentic",
     "gptmed.agentic.agents",
     "gptmed.agentic.core",

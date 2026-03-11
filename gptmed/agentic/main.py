@@ -16,11 +16,11 @@ from pathlib import Path
 
 try:
     from .core import AgentLogger, AgentRegistry, AgentOrchestrator, WorkflowStep
-    from .agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent
+    from .agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent, FileIngestionAgent
 except ImportError:
     # Fallback for direct execution: `python main.py` from this folder.
     from core import AgentLogger, AgentRegistry, AgentOrchestrator, WorkflowStep
-    from agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent
+    from agents import PrescriptionAnalyzerAgent, DoctorAgent, PharmacistAgent, FileIngestionAgent
 
 
 class MedicalPrescriptionWorkflow:
@@ -44,17 +44,22 @@ class MedicalPrescriptionWorkflow:
         self.logger.info("=" * 60)
     
     def _register_agents(self) -> None:
-        """Register all available agents."""
-        agents = [
+        """Register all available agents (idempotent – safe to call multiple times)."""
+        candidates = [
             PrescriptionAnalyzerAgent(),
             DoctorAgent(),
-            PharmacistAgent()
+            PharmacistAgent(),
+            FileIngestionAgent(),
         ]
-        
-        for agent in agents:
-            self.registry.register(agent)
-        
-        self.logger.info(f"✅ Registered {len(agents)} agents")
+
+        registered_names = set(self.registry.list_agents())
+        newly_registered = 0
+        for agent in candidates:
+            if agent.name not in registered_names:
+                self.registry.register(agent)
+                newly_registered += 1
+
+        self.logger.info(f"✅ Registered {newly_registered} new agents (total: {len(self.registry.list_agents())})")
     
     def process_prescription(self, prescription_data: Any) -> Dict[str, Any]:
         """
@@ -83,9 +88,53 @@ class MedicalPrescriptionWorkflow:
             fail_fast=False,
             timeout_sec=30
         )
-        
+
         return results
-    
+
+    def process_prescription_from_file(
+        self,
+        file_bytes: bytes,
+        mime_type: str,
+        filename: str,
+    ) -> Dict[str, Any]:
+        """
+        Execute full workflow starting from a raw file upload.
+
+        Pipeline:
+            FileIngestionAgent → PrescriptionAnalyzer → DoctorAgent → PharmacistAgent
+
+        Args:
+            file_bytes: Raw bytes of the uploaded PDF or image.
+            mime_type:  MIME type (e.g. "application/pdf", "image/png").
+            filename:   Original filename used as type-detection fallback.
+
+        Returns:
+            Complete workflow results dict (agent_name → AgentResult).
+        """
+        self.logger.info("\n" + "=" * 60)
+        self.logger.info("📎 PROCESSING UPLOADED FILE")
+        self.logger.info("=" * 60)
+
+        steps = [
+            WorkflowStep(agent_name="FileIngestionAgent"),
+            WorkflowStep(agent_name="PrescriptionAnalyzer"),
+            WorkflowStep(agent_name="DoctorAgent"),
+            WorkflowStep(agent_name="PharmacistAgent"),
+        ]
+
+        initial_input = {
+            "file_bytes": file_bytes,
+            "mime_type": mime_type,
+            "filename": filename,
+        }
+
+        return self.orchestrator.execute_workflow(
+            steps=steps,
+            initial_input=initial_input,
+            fail_fast=False,
+            timeout_sec=60,
+        )
+
     def display_results(self, results: Dict[str, Any]) -> None:
         """Display workflow results in human-readable format."""
         print("\n" + "=" * 80)

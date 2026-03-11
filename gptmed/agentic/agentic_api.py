@@ -89,3 +89,41 @@ class BackendAgenticService:
             "source": self._source,
             "results": serialized_results,
         }
+
+    def process_prescription_file(
+        self,
+        file_bytes: bytes,
+        mime_type: str,
+        filename: str,
+    ) -> Dict[str, Any]:
+        """Execute full 4-agent workflow starting from a raw file upload.
+
+        Pipeline:
+            FileIngestionAgent -> PrescriptionAnalyzer -> DoctorAgent -> PharmacistAgent
+
+        Args:
+            file_bytes: Raw bytes of the uploaded PDF or image.
+            mime_type: MIME type string (e.g. ``"application/pdf"``).
+            filename: Original filename (used as extension fallback).
+
+        Returns:
+            Dict with ``source`` and ``results`` keys.
+        """
+        self._ensure_workflow()
+        if self._workflow is None:
+            raise RuntimeError(self._error or "Agentic workflow is not available")
+
+        results = self._workflow.process_prescription_from_file(
+            file_bytes=file_bytes,
+            mime_type=mime_type,
+            filename=filename,
+        )
+        serialized_results = {
+            agent_name: result.to_dict() if hasattr(result, "to_dict") else result
+            for agent_name, result in results.items()
+        }
+
+        return {
+            "source": self._source,
+            "results": serialized_results,
+        }

@@ -56,7 +56,7 @@ sentencepiece==0.2.1
 six==1.17.0
 sympy==1.14.0
 tokenizers==0.22.2
-torch==2.7.1+cu118
+torch==2.13.0
 torchaudio==2.7.1+cu118
 torchvision==0.22.1+cu118
 tqdm==4.67.1

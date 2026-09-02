@@ -60,7 +60,7 @@ torch==2.7.1+cu118
 torchaudio==2.7.1+cu118
 torchvision==0.22.1+cu118
 tqdm==4.67.1
-transformers==4.57.5
+transformers==5.10.1
 triton==3.3.1
 typing_extensions==4.15.0
 urllib3==2.6.3
